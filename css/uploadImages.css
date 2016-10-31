@@ -1,0 +1,73 @@
+.upload-container {
+	background: #fff;
+	padding:11px 15px;
+}
+.upload-container #changeAvatar img {
+	width: 65px;
+	height: 65px;
+}
+.upload-container .upload-btn {
+	width:90%;
+	margin: 0 auto;
+	margin-top:30px;
+}
+.upload-container #spinner {
+	text-align: center;
+	z-index: 99;
+	width: 100%;
+	height: 2000px;
+	background-color: #f2f2f2 ;
+	position: absolute;
+	top:40px;
+	left: 0px;
+	display: none;
+}
+.upload-container .waint-container {
+	width:90px;
+	padding-top:200px;
+	margin:0 auto;
+	height: 100%;
+}
+.upload-container .waint-container .waint-coin {
+	width:30px;
+	float: left;
+}
+.upload-container .waint-container .waint-coin span {
+	height: 20px;
+}
+.upload-container .waint-container .waint-text {
+	width:60px;
+	float: left;
+}
+.upload-container #showEdit {
+	width:100%;
+	height: 100%;
+	background-color: #fff;
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: none;
+	z-index: 9999;
+}
+.upload-container #showEdit .mui-content-padded {
+	width:100%;
+	z-index: 110;
+	position: absolute;
+	top:44px;
+	left:0px;
+}
+.upload-container #showEdit #report {
+	width:100%;
+	height: 100%;
+	z-index: 10;
+}
+.upload-container #showEdit .flex-container a {
+	border-radius: 50%;
+	background: #fff;
+	width: 40px;
+	height: 40px;
+	float: left;
+	text-align: center;
+	line-height: 46px;
+}
+

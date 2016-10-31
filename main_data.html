@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" href="css/main.css">
+	</head>
+	<style type="text/css">
+		*{list-style: none;}
+		.list-left{width: 100%;position: relative;}
+		
+		.list-left #info{position: absolute;width: 14px;left: 15px;top: 13px;}
+		.lala-list,.list-left,#provide_list,.list-line{background: none;margin: 0;padding: 0;}
+		.list-left h1{width: 100%;font-size: 14px;color: #3dc579;background: #fff;line-height: 30px;
+		padding-left: 35px;border-bottom: 1px #ccc solid;}
+		
+		.deal_x_left{color: #727272;width: 30%;float: left;position: relative;
+		text-align: center;padding-top: 35px} 
+		.deal_x_left img{width: 40px;float: left;position: absolute;left: 50%;margin-left: -20px;top:5px}
+		
+		.pa-list .faild{background: #fff;width: 100%;}
+		.pa-list li{border-radius: 3px}
+		.pa-list .faild .content p{color: #727272;font-size: 12px;}
+		.deal_x_right span{font-size: 12px !important;margin-top: 3px;background: #17d4c0;text-align: center;
+		line-height: 14px;padding: 5px 5px !important;border-radius: 3px;color: #fff;width: 70px;}
+		.state{margin-top: 15px;width: 70px;}
+	</style>
+	<body>
+		<div id="refreshContainer" class="mui-content mui-scroll-wrapper" style="margin-top: 0px; padding-top: 0; border-top: 2px #efefef; float: none; clear:both">
+			<div class="mui-scroll">
+				<ul class="mui-table-view mui-table-view-chevron">
+					<li>
+						<div class="lala-list">
+							<ul class="list-left">
+								
+								<li id="provide_list"></li>
+							</ul>
+							<ul class="list-left">
+								<li id="accept_list"></li>
+							</ul>
+						</div>
+						<ul class="pa-list" id="pa_list">
+
+						</ul>
+					</li>  
+				</ul>
+			</div>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script src="js/app.js"></script>
+		<script src="script/main.js"></script>
+		<script type="text/javascript">
+			(function($, doc) {
+				$.init({
+					pullRefresh : {
+						container:"#refreshContainer",
+						down : {
+							height:50,
+							contentdown : "下拉可以刷新",
+							contentover : "释放立即刷新",
+							contentrefresh : "正在刷新...",
+							callback :function(){
+								var state = app.getState();
+								var data = {};
+								data.username = state.username;
+								getDateFromServer(data);
+								$('#refreshContainer').pullRefresh().endPulldownToRefresh()
+							}
+						}
+					}
+				});
+				
+				function getDateFromServer(data) {
+					app.getList(data, 1, "provide_list", function(err) {
+						if (err) {
+							plus.nativeUI.toast(err);
+							return;
+						}
+					});
+					app.getList(data, 2, "accept_list", function(err) {
+						if (err) {
+							plus.nativeUI.toast(err);
+							return;
+						}
+					});
+					app.getPaList(data,function(err) {
+						if(err) {
+							plus.nativeUI.toast(err);
+							return;
+						}
+					});
+				}
+				
+				$.plusReady(function() {
+					
+					var settings = app.getSettings();
+					plus.screen.lockOrientation("portrait-primary");
+					// 获得提供帮助
+					var state = app.getState();
+					var data = {};
+					data.username = state.username;
+					getDateFromServer(data);
+				});
+				$("#pa_list").on("tap", "li", function(){
+					var paid = this.getAttribute('data-id');
+					var patype = this.getAttribute('data-type');
+					if(patype == 1) {
+						setTimeout(function() {
+							$.openWindow({
+								id: 'paAcceptDetail',
+								url: "pa_accept_detail.html",
+								waiting: {
+									autoShow: true
+								},
+								extras: {
+									paid: paid,
+									patype: patype
+								},
+							});
+						}, 0);
+					}
+					if(patype == 2) {
+						setTimeout(function() {
+							$.openWindow({
+								id: 'paProvideDetail',
+								url: "pa_provide_detail.html",
+								waiting: {
+									autoShow: true
+								},
+								extras: {
+									paid: paid,
+									patype: patype
+								},
+							});
+						}, 0);
+					}
+				});
+				$(".lala-list").on("tap", ".deal-block", function(){
+					var dealid = this.getAttribute('id');
+					var dealtype = this.getAttribute('type');
+					setTimeout(function() {
+						$.openWindow({
+							id: 'dealDetail',
+							url: "deal_record_detail.html",
+							waiting: {
+								autoShow: true
+							},
+							extras: {
+								dealid: dealid,
+								dealtype: dealtype
+							},
+						});
+					}, 0);
+				});
+			}(mui, document));	
+			
+		</script>
+	</body>
+
+</html>

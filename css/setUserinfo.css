@@ -1,0 +1,22 @@
+html,body {
+	background-color: #efeff4;
+}
+.mui-input-row{text-align: left;}
+.mui-input-row label{padding:0!important;text-align:left;height:40px;line-height:40px;
+					width:35%;text-indent: 17px;}
+
+.mui-segmented-control{border:none;margin-top:10px;margin-bottom: 10px;background: #fff;}
+.mui-control-item{border:none!important;color:#333!important;}
+.mui-active{background: none!important;color: #007aff!important;border-bottom: 2px solid #007aff!important;}
+#item1mobile{border-bottom:none!important;}
+#item2mobile{border-bottom:none!important;}
+#item3mobile{border-bottom:none!important;}
+#item1mobile .mui-active{border-bottom:none!important;}
+#item2mobile .mui-active{border-bottom:none!important;}
+#item3mobile .mui-active{border-bottom:none!important;}
+.mui-slider-group{background: #fff;}
+.mui-slider-group label{color: #444;}
+.mui-input-row{color: #444;}
+#submit{height:46px;background: #077bbe;color:#fff;padding:0}
+.mui-bar-tab~.mui-content{padding-bottom: 15px;}
+#changeAvatar{padding-top:14px;padding-left:10px}

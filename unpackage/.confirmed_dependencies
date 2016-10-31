@@ -1,0 +1,322 @@
+{
+	"index.html": {
+		"resources": [
+			"script/login.js",
+			"js/mui.min.js",
+			"css/login.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"css/style.css",
+			"images/banner.png",
+			"js/mui.enterfocus.js",
+			"images/icon.png"
+		],
+		"refer": [
+			"main.html",
+			"register.html"
+		]
+	},
+	"expanded.html": {
+		"resources": [
+			"script/expanded.js",
+			"images/icon21.png",
+			"css/expanded.css",
+			"images/head.jpg",
+			"images/icon1.png"
+		],
+		"refer": [
+			"sell_activate.html",
+			"team_detail.html"
+		]
+	},
+	"question_data.html": {
+		"resources": [
+			"images/what.jpg"
+		]
+	},
+	"main.html": {
+		"resources": [
+			"images/indexInfo.jpg",
+			"js/app.js",
+			"css/main.css",
+			"images/nav2.jpg",
+			"images/icon11.png",
+			"images/nav3.jpg",
+			"script/main.js",
+			"images/icon3.png",
+			"images/nav1.jpg",
+			"images/icon2.png",
+			"script/announce1.js",
+			"images/banner.jpg",
+			"images/icon4.png",
+			"css/common.css",
+			"main_data.html",
+			"js/update.js",
+			"fonts/iconfont.woff",
+			"images/bag.png",
+			"fonts/mui.ttf",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"images/nav1.png",
+			"images/nav2.png",
+			"images/nav3.png"
+		],
+		"refer": [
+			"expanded.html",
+			"main_data.html",
+			"user.html",
+			"shop.html",
+			"accept.html",
+			"provide.html",
+			"wallet.html"
+		]
+	},
+	"set_userinfo.html": {
+		"resources": [
+			"script/csdn.js",
+			"libs/jquery.min.js",
+			"css/uploadImages.css",
+			"css/setUserinfo.css",
+			"images/iconfont-tianjia.png",
+			"fonts/mui.ttf",
+			"js/app.js",
+			"script/user.js",
+			"images/icon3.png",
+			"images/icon2.png",
+			"css/common.css",
+			"images/icon1.png",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"images/icon41.png"
+		]
+	},
+	"deal_record.html": {
+		"resources": [
+			"css/dealRecord.css",
+			"script/dealRecord.js"
+		]
+	},
+	"set_bank.html": {
+		"resources": [
+			"images/zhiubao.png",
+			"css/setBank.css",
+			"images/pay.png",
+			"images/jingtai-icon.png",
+			"js/app.js",
+			"script/user.js",
+			"fonts/mui.ttf",
+			"images/icon3.png",
+			"images/icon2.png",
+			"fonts/iconfont.woff",
+			"css/common.css",
+			"images/icon1.png",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"images/icon41.png"
+		],
+		"refer": [
+			"set_userinfo.html"
+		]
+	},
+	"sell_activate.html": {
+		"resources": [
+			"script/sellActivate.js",
+			"css/teamDetail.css"
+		]
+	},
+	"user.html": {
+		"resources": [
+			"script/user.js",
+			"images/icon41.png",
+			"css/user.css",
+			"images/user-icon.png",
+			"fonts/iconfont.woff",
+			"images/head.jpg",
+			"js/app.js",
+			"images/icon3.png",
+			"images/icon2.png",
+			"css/common.css",
+			"images/icon1.png",
+			"js/mui.min.js",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"deal_record.html",
+			"set_bank.html",
+			"question.html",
+			"change_password.html",
+			"index.html",
+			"feedback.html"
+		]
+	},
+	"question.html": {
+		"resources": [
+			"question_data.html",
+			"css/question.css",
+			"script/question.js"
+		],
+		"refer": [
+			"question_data.html"
+		]
+	},
+	"change_password.html": {
+		"resources": [
+			"script/changePassword.js",
+			"css/teamDetail.css"
+		]
+	},
+	"shop.html": {
+		"resources": [
+			"images/loading.jpg",
+			"images/icon1.png",
+			"images/icon31.png",
+			"images/cbd.jpg",
+			"images/muwu.jpg",
+			"images/yuantiao.jpg",
+			"images/shuijiao.jpg",
+			"fonts/mui.ttf"
+		]
+	},
+	"main_data.html": {
+		"resources": [
+			"js/app.js",
+			"css/main.css",
+			"js/mui.min.js",
+			"css/common.css",
+			"css/mui.min.css",
+			"script/main.js",
+			"images/nav3.jpg",
+			"images/nav1.jpg",
+			"fonts/iconfont.woff"
+		],
+		"refer": [
+			"pa_accept_detail.html",
+			"deal_record_detail.html"
+		]
+	},
+	"accept.html": {
+		"resources": [
+			"script/accept.js",
+			"js/app.js",
+			"images/dongBag.jpg",
+			"images/jingBag.jpg",
+			"js/mui.min.js",
+			"css/common.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"css/feedback-page.css",
+			"js/mui.view.js"
+		]
+	},
+	"provide.html": {
+		"resources": [
+			"css/feedback-page.css",
+			"script/provide.js",
+			"js/mui.view.js",
+			"js/app.js",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		]
+	},
+	"wallet_frozen.html": {
+		"resources": [
+			"css/frozenDetail.css",
+			"script/frozenDetail.js"
+		]
+	},
+	"wallet.html": {
+		"resources": [
+			"js/app.js",
+			"script/user.js",
+			"fonts/mui.ttf",
+			"images/icon11.png",
+			"images/icon3.png",
+			"images/icon2.png",
+			"fonts/iconfont.woff",
+			"images/dongjie-icon.png",
+			"images/icon4.png",
+			"css/common.css",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"css/walletNew.css",
+			"images/dongtai-icon.png",
+			"images/jingtai-icon.png"
+		],
+		"refer": [
+			"wallet_frozen.html",
+			"wallet_dynamic.html"
+		]
+	},
+	"pa_accept_detail.html": {
+		"resources": [
+			"css/paDetail.css",
+			"js/mui.zoom.js",
+			"css/preview.css",
+			"script/paAcceptDetail.js",
+			"js/mui.previewimage.js"
+		]
+	},
+	"team_detail.html": {
+		"resources": [
+			"js/app.js",
+			"images/icon4.png",
+			"js/mui.min.js",
+			"images/icon1.png",
+			"css/common.css",
+			"script/teamDetail.js",
+			"fonts/mui.ttf",
+			"images/icon21.png",
+			"css/mui.min.css",
+			"images/icon3.png",
+			"css/teamDetail.css"
+		]
+	},
+	"wallet_dynamic.html": {
+		"resources": [
+			"css/dynamicDetail.css",
+			"script/dynamicDetail.js"
+		]
+	},
+	"deal_record_detail.html": {
+		"resources": [
+			"js/app.js",
+			"css/dealRecord.css",
+			"images/icon4.png",
+			"js/mui.min.js",
+			"css/common.css",
+			"script/dealRecord.js",
+			"fonts/mui.ttf",
+			"images/icon11.png",
+			"css/mui.min.css",
+			"images/icon3.png",
+			"images/icon2.png"
+		]
+	},
+	"feedback.html": {
+		"resources": [
+			"js/app.js",
+			"js/mui.min.js",
+			"images/icon1.png",
+			"css/common.css",
+			"script/feedback.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/icon41.png",
+			"images/icon3.png",
+			"images/icon2.png"
+		]
+	},
+	"register.html": {
+		"resources": [
+			"css/register.css",
+			"images/reg.png",
+			"script/login.js",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/mui.enterfocus.js"
+		]
+	}
+}

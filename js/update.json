@@ -1,0 +1,15 @@
+{
+    "appid":"H5E4F6628",
+    "iOS":{
+    	"version":"3.2.1",
+    	"title":"拉拉V5版本更新",
+    	"note":"新增自动升级检测功能\n功能更新\n优化整体显示体验\n",
+    	"url":"http://fir.im/kcbu"
+    },
+    "Android":{
+    	"version":"3.2.1",
+    	"title":"拉拉V5版本更新",
+    	"note":"重大更新：\n优化激活码机制\n注册验证码机制优化\n",
+    	"url":"http://fir.im/kcbu"
+    }
+}

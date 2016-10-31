@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/common.css"><br />
+		<style type="text/css">
+			html,body { background: #ffffff;}
+			#slider{margin-top:40px;}
+			.mui-media-title{line-height:36px;}
+		</style>
+	</head>
+	<style type="text/css">
+			.mui-bar{height: 60px;padding-top: 20px;background: #3dc579;box-shadow: none;}
+			.mui-bar a{color: #fff;}
+			.mui-title{color: #fff;font-weight: 600;}
+			
+			#mui_nav{background: none;height: 30px}
+			#mui_nav a{width: 25%;position: relative;background: #fff;border-top: 1px #ccc solid;height: 60px;}
+			#mui_nav img{position: absolute;width: 20px;left: 50%;margin-left: -10px;top: 10px;}
+			#mui_nav span{color: #727272;font-size: 14px;float: left;width: 100%;margin-top: 20px;}
+			#mui-tab-label1{color: #3dc579;}
+			
+			.mui-content{margin-top:15px;}
+			#loading{position: fixed;width: 100%;left: 0;top: -20px;}
+	</style>
+	<body>
+		<
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="title" class="mui-title">拉拉币</h1>
+		</header>
+		<nav class="mui-bar mui-bar-tab" id="mui_nav">
+			<a class="home-tab-item" id="index_main">
+				<img src="images/icon1.png"/>
+				<span class="mui-tab-label" >互助</span>
+			</a>
+			<a class="home-tab-item" id="index_expanded">
+				<img src="images/icon2.png"/> 
+				<span class="mui-tab-label">推广</span>
+			</a>
+			<a class="home-tab-item" id="index_shop">
+				<img src="images/icon31.png"/>
+				<span class="mui-tab-label"  style="color: #3dc579;">商城</span>
+			</a>
+			<a class="home-tab-item" id="index_user">
+				<img src="images/icon4.png"/>
+				<span class="mui-tab-label">个人</span>
+			</a>
+		</nav>
+		<img src="images/loading.jpg" id="loading"/>
+		<!--<div id="slider" class="mui-slider" >
+			<div class="mui-slider-group mui-slider-loop">
+				<div class="mui-slider-item mui-slider-item-duplicate">
+					<a href="javascript:void(0)">
+						<img src="images/yuantiao.jpg">
+					</a>
+				</div>
+				<div class="mui-slider-item">
+					<a href="javascript:void(0)">
+						<img src="images/shuijiao.jpg">
+					</a>
+				</div>
+				<div class="mui-slider-item">
+					<a href="javascript:void(0)">
+						<img src="images/muwu.jpg">
+					</a>
+				</div>
+				<div class="mui-slider-item">
+					<a href="javascript:void(0)">
+						<img src="images/cbd.jpg">
+					</a>
+				</div>
+				<div class="mui-slider-item">
+					<a href="javascript:void(0)">
+						<img src="images/yuantiao.jpg">
+					</a>
+				</div>
+				<div class="mui-slider-item mui-slider-item-duplicate">
+					<a href="javascript:void(0)">
+						<img src="images/shuijiao.jpg">
+					</a>
+				</div>
+			</div>
+			<div class="mui-slider-indicator">
+				<div class="mui-indicator mui-active"></div>
+				<div class="mui-indicator"></div>
+				<div class="mui-indicator"></div>
+				<div class="mui-indicator"></div>
+			</div>
+		</div>
+		<div class="mui-content" style="padding-top:0px; background: #fff;">
+
+			<ul class="mui-table-view mui-grid-view">
+				<li class="mui-table-view-cell mui-media mui-col-xs-12">
+						<div class="lala-list" id="shop-list" style="background: #efeff4;">
+						</div>
+					<a href="javascript:void(0)">
+						<div class="mui-media-title">全国手机充值100元电信话费直充快充电信充值</div> 
+						<img class="mui-media-object" src="images/shangpin.png">
+						      
+					</a>
+				</li>
+			</ul>
+		</div>-->
+	</body>
+	<script src="js/mui.min.js"></script>
+	<script src="js/app.js"></script>
+	<script>
+		mui.init({
+			swipeBack:true //启用右滑关闭功能
+		});
+		var gallery = mui('.mui-slider');
+		gallery.slider({
+			interval:5000//自动轮播周期，若为0则不自动播放，默认为0；
+		});
+		mui.plusReady(function(){
+			plus.nativeUI.showWaiting();
+			
+			setTimeout(function(){
+				plus.nativeUI.closeWaiting();
+			},500)
+		});
+		
+	</script>
+</html>

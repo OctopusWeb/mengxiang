@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" href="css/dealRecord.css">
+	</head>
+	
+	<style type="text/css">
+			.mui-bar{height: 60px;padding-top: 20px;background: #3dc579;box-shadow: none;}
+			.mui-bar a{color: #fff;}
+			.mui-title{color: #fff;font-weight: 600;}
+			
+			#mui_nav{background: none;height: 30px}
+			#mui_nav a{width: 25%;position: relative;background: #fff;border-top: 1px #ccc solid;height: 60px;}
+			#mui_nav img{position: absolute;width: 20px;left: 50%;margin-left: -10px;top: 10px;}
+			#mui_nav span{color: #727272;font-size: 14px;float: left;width: 100%;margin-top: 20px;}
+			#mui-tab-label1{color: #3dc579;}
+			
+			.mui-content{margin-top: 30px;}
+	</style>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="title" class="mui-title">参与记录</h1>
+		</header>
+		<nav class="mui-bar mui-bar-tab" id="mui_nav">
+			<a class="home-tab-item mui-active" id="index_main">
+				<img src="images/icon11.png"/>
+				<span class="mui-tab-label"  style="color: #3dc579;">互助</span>
+			</a>
+			<a class="home-tab-item" id="index_expanded">
+				<img src="images/icon2.png"/> 
+				<span class="mui-tab-label">推广</span>
+			</a>
+			<a class="home-tab-item" id="index_shop">
+				<img src="images/icon3.png"/>
+				<span class="mui-tab-label">商城</span>
+			</a>
+			<a class="home-tab-item" id="index_user">
+				<img src="images/icon4.png"/>
+				<span class="mui-tab-label">个人</span>
+			</a>
+		</nav>
+		<div class="mui-content">
+			<div class="mui-slider-group detail-list">
+				<div class="mui-control-content mui-active">
+					<ul class="mui-table-view" id="detail_list"></ul>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/mui.min.js"></script>
+	<script src="js/app.js"></script>
+	<script src="script/dealRecord.js"></script>
+	<script>
+		(function($, doc) {
+			$.init({
+				swipeBack:true //启用右滑关闭功能
+			});
+			$.plusReady(function() {
+				webPageFunction = function() {
+					plus.webview.currentWebview().close();
+				}
+				plus.screen.lockOrientation("portrait-primary");
+				var self = plus.webview.currentWebview();
+				var dealid   = parseInt(self.dealid);
+				var dealtype = parseInt(self.dealtype);
+				if(dealid == 0) {
+					plus.nativeUI.toast("参数错误！ ");
+					$.back();
+				}
+				
+				var state = app.getState();
+				var data = {};
+				data.id = dealid;
+				data.type = dealtype;
+				data.username = state.username;
+				app.getDetail(data, function(err) {
+					if (err) {
+						plus.nativeUI.toast(err);
+						return;
+					}
+				});
+			});
+			$("#detail_list").on("tap","li", function() {
+				var paid = this.getAttribute('data-id');
+				var patype = this.getAttribute('data-type');
+				if(patype == 1) {
+					setTimeout(function() {
+						$.openWindow({
+							id: 'paAcceptDetail',
+							url: "pa_accept_detail.html",
+							waiting: {
+								autoShow: true
+							},
+							extras: {
+								paid: paid,
+								patype: patype
+							},
+						});
+					}, 0);
+				}
+				if(patype == 2) {
+					setTimeout(function() {
+						$.openWindow({
+							id: 'paProvideDetail',
+							url: "pa_provide_detail.html",
+							waiting: {
+								autoShow: true
+							},
+							extras: {
+								paid: paid,
+								patype: patype
+							},
+						});
+					}, 0);
+				}
+			});
+			$.back = function() {
+					plus.webview.currentWebview().close();
+					oldBack();
+			};
+		}(mui, document));
+	</script>
+</html>

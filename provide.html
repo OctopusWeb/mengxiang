@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="./css/mui.min.css">
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			.mui-views,
+			.mui-view,
+			.mui-pages,
+			.mui-page,
+			.mui-page-content {
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				width: 100%;
+				height: 100%;
+				background-color: #efeff4;
+			}
+			.mui-pages {
+				top: 46px;
+				height: auto;
+			}
+			.mui-scroll-wrapper,
+			.mui-scroll {
+				background-color: #efeff4;
+			}
+			.mui-page.mui-transitioning {
+				-webkit-transition: -webkit-transform 200ms ease;
+				transition: transform 200ms ease;
+			}
+			.mui-page-left {
+				-webkit-transform: translate3d(0, 0, 0);
+				transform: translate3d(0, 0, 0);
+			}
+			.mui-ios .mui-page-left {
+				-webkit-transform: translate3d(-20%, 0, 0);
+				transform: translate3d(-20%, 0, 0);
+			}
+			.mui-navbar {
+				position: fixed;
+				right: 0;
+				left: 0;
+				z-index: 10;
+				height: 44px;
+				background-color: #f7f7f8;
+			}
+			.mui-navbar .mui-bar {
+				position: absolute;
+				background: transparent;
+				text-align: center;
+			}
+			.mui-android .mui-navbar-inner.mui-navbar-left {
+				opacity: 0;
+			}
+			.mui-ios .mui-navbar-left .mui-left,
+			.mui-ios .mui-navbar-left .mui-center,
+			.mui-ios .mui-navbar-left .mui-right {
+				opacity: 0;
+			}
+			.mui-navbar .mui-btn-nav {
+				-webkit-transition: none;
+				transition: none;
+				-webkit-transition-duration: .0s;
+				transition-duration: .0s;
+			}
+			.mui-navbar .mui-bar .mui-title {
+				display: inline-block;
+				position: static;
+				width: auto;
+			}
+			.mui-page-shadow {
+				position: absolute;
+				right: 100%;
+				top: 0;
+				width: 16px;
+				height: 100%;
+				z-index: -1;
+				content: '';
+			}
+			.mui-page-shadow {
+				background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, .01) 50%, rgba(0, 0, 0, .2) 100%);
+				background: linear-gradient(to right, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, .01) 50%, rgba(0, 0, 0, .2) 100%);
+			}
+			.mui-navbar-inner.mui-transitioning,
+			.mui-navbar-inner .mui-transitioning {
+				-webkit-transition: opacity 200ms ease, -webkit-transform 200ms ease;
+				transition: opacity 200ms ease, transform 200ms ease;
+			}
+			.mui-page {
+				display: none;
+			}
+			.mui-pages .mui-page {
+				display: block;
+			}
+			.mui-page .mui-table-view:first-child {
+				margin-top: 15px;
+			}
+			.mui-page .mui-table-view:last-child {
+				margin-bottom: 30px;
+			}
+			.mui-table-view {
+				margin-top: 20px;
+			}
+			.mui-table-view:after {
+				height: 0;
+			}
+			.mui-table-view span.mui-pull-right {
+				color: #999;
+			}
+			.mui-table-view-divider {
+				background-color: #efeff4;
+				font-size: 14px;
+			}
+			.mui-table-view-divider:before,
+			.mui-table-view-divider:after {
+				height: 0;
+			}
+			.mui-content-padded {
+				margin: 10px 0px;
+			}
+			.mui-locker {
+				margin: 35px auto;
+				display: none;
+			}
+			#warning-content p {
+				color: #000;
+			}
+			.title {
+			    font-size: 20px;
+			    text-align: center;
+			    line-height: 40px;
+			    padding: 5px 0 6px 0;
+			    border-bottom: 1px solid #ccc;
+			    background: #fff;
+			    color: darkorange;
+			    margin: 0;
+			}
+			.notice {
+				padding: 20px;
+				background: #fff;
+				margin: 0;
+			}
+			.notice #notice-content {
+				color: #303030;
+			}
+			.notice #notice-content p {
+				margin-bottom: 0;
+			}
+			.cash {
+				background: #fff;
+				border-bottom: 1px solid #ccc;
+			}
+			.cash input {
+				width:100%;
+				height: 40px;
+				line-height: 40px;
+				border-bottom: 1px solid #ccc;
+				border: none;
+				padding: 20px;
+				font-size: 14px;
+			}
+			
+			.mui-navbar{height: 60px;box-shadow: none;}
+			.mui-navbar .mui-bar{height: 60px;padding-top: 20px;background: #3dc579;}
+			.mui-bar .mui-btn-link{color: #fff;}
+			.mui-title{color: #fff;font-weight: 600;text-align: center;}
+			#warning-content{margin-top: 10px;}
+			#next{float: left;width: 90%;margin-left: 5%;height: 50px;background: #3dc579;border: none;margin-top: 5px;}
+			
+			.title{float: left;margin-top: 20px;color: #3dc579;font-size: 16px;padding-left: 20px;width: 100%;background: #fff;text-align: left;}
+			#cash{padding-left: 20px;padding-top: 20px;padding-bottom: 5px;}
+			#submit{width: 90%;margin-left: 5%;height: 50px;background: #3dc579;border: none;margin-top: 10px;}
+			.mui-checkbox input[type=checkbox]:checked:before, .mui-radio input[type=radio]:checked:before{color: #3dc579;}
+		</style>
+		<link rel="stylesheet" type="text/css" href="./css/feedback-page.css" />
+	</head>
+
+	<body>
+		<!--页面主结构开始-->
+		<div id="app" class="mui-views">
+			<div class="mui-view">
+				<div class="mui-navbar"></div>
+				<div class="mui-pages"></div>
+			</div>
+		</div>
+		<div id="warning" class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav"></span>
+				</button>
+				<h1 class="mui-center mui-title">风险提示</h1>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<div style="background: #fff; padding: 20px;" id="warning-content">
+							
+						</div>
+						<div class="mui-content-padded" style="background: #fff;">
+							<div class="mui-input-row mui-checkbox mui-left" style="padding: 10px;">
+								<label>我同意《风险提示内容》</label>
+								<input id="readWarning" value="yes" type="checkbox" checked style="margin: 10px"/>
+							</div>
+							<a id="next" type="button" href="#provide" class="mui-btn mui-btn-block mui-btn-primary">下一步</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="provide" class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav"></span>
+				</button>
+				<h1 class="mui-center mui-title">提供帮助</h1>
+			</div>
+			<div class="mui-page-content">
+				<p class="title">您本次承诺提供的金额（人民币）</p>
+				<div class="mui-input-row cash">
+					<input id="cash" name="cash" type="tel" value="" placeholder="" />
+				</div>
+				<div class="mui-content-padded notice">
+					<h4 style="color: #888888;font-size: 16px;">温馨提示</h4>
+					<div id="notice-content">
+						
+					</div>
+				</div>
+				<button id='submit' type="button" class="mui-btn mui-btn-block mui-btn-green">提交</button>
+			</div>
+		</div>
+
+	</body>
+	<script src="./js/mui.min.js "></script>
+	<script src="./js/mui.view.js "></script>
+	<script src="./js/app.js"></script>
+	<script src="./script/provide.js"></script>
+	<script>
+		(function($, doc) {
+			$.init({
+				swipeBack:true
+			});
+			
+			//初始化单页的区域滚动
+			$('.mui-scroll-wrapper').scroll();
+			
+			var viewApi = $('#app').view({
+				defaultPage: '#warning'
+			});
+			
+			var view = viewApi.view;
+			
+			
+			$.plusReady(function() {
+				webPageFunction = function() {
+					plus.webview.currentWebview().close();
+				}
+				var settings = app.getSettings();
+				var state = app.getState();
+				
+				var setUserinfoPage = $.preload({
+					"id"  : "setUserinfo",
+					"url" : "set_userinfo.html"
+				});
+				
+				function alertMsg() {
+					
+				}
+				
+				//判断是否填写资料
+				var condition1 = ( state.cardbank == "" || state.cardaccount == "" || state.cardnumber == "" || state.cardname == "" );
+				var condition2 = ( state.alipay == "" );
+				var condition3 = ( state.lalacoin == "" );
+				
+				if(condition1 && condition2 && condition3) {
+					$.alert("银行卡 / 支付宝 / 拉拉币，您至少填写一组完整数据才可提供帮助！","拉拉提示", function() {
+						webPageFunction();
+						$.fire(setUserinfoPage, 'show', null);
+						$.openWindow({
+							id: 'setUserinfo',
+							show: {
+								aniShow: 'pop-in'
+							},
+							waiting: {
+								autoShow: false
+							}
+						});
+						
+					});
+					return;
+				} else {
+					plus.nativeUI.showWaiting();
+					app.getProvideInfo(function(err) {
+						plus.nativeUI.closeWaiting();
+						if(err){
+							plus.nativeUI.toast(err);
+							return;
+						}
+					});
+				}
+				
+				
+//				var condition11 = ( state.cardbank == null || state.cardaccount == null || state.cardnumber == null || state.cardname == null );
+//				var condition21 = ( state.alipay == null );
+//				var condition31 = ( state.lalacoin == null );
+//				
+//				var conditionStr = (condition1 || condition11) && (condition2 || condition21) && (condition3 || condition31);
+//				alert(conditionStr+"12")
+//				
+//				if(conditionStr) {
+//					
+//				}
+				
+				
+				var mainPage = $.preload({
+					"id" : "main",
+					"url" : "main.html"
+				});
+				
+				view.addEventListener('pageBeforeShow', function(e) {
+					if (e.detail.page.id == 'provide') {
+						if(!doc.querySelector("#readWarning").checked) {
+							mui.alert("您应该先点击  我同意《风险提示内容》","拉拉平台");
+							viewApi.back();
+						}
+					}
+				});
+				
+				var submitButton = doc.getElementById("submit");
+				
+				submitButton.addEventListener("tap", function(err){
+					
+					var state = app.getState();
+					var data = {};
+					data.username = state.username;
+					data.isread = doc.getElementById("readWarning").checked ? "yes" : "no";
+					data.cash = doc.getElementById("cash").value;
+					
+					app.sendProvide(data, function(err) {
+						if(err) {
+							plus.nativeUI.toast(err);
+							return;
+						}
+						$.fire(mainPage, 'refresh', null);
+						$.alert("申请成功，请等待系统匹配！","拉拉平台","",function(e){
+							$.back();
+							$.back();
+						});
+					});
+					
+				});
+				
+//				view.addEventListener('pageShow', function(e) {
+//				});
+//				view.addEventListener('pageBeforeBack', function(e) {
+//				});
+//				view.addEventListener('pageBack', function(e) {
+//				});
+				
+				
+			});
+			//处理view的后退与webview后退
+			var oldBack = $.back;
+			$.back = function() {
+				if (viewApi.canBack()) { //如果view可以后退，则执行view的后退
+					viewApi.back();
+				} else { //执行webview后退
+					plus.webview.currentWebview().close();
+					oldBack();
+				}
+			};
+		}(mui, document));
+	</script>
+
+</html>

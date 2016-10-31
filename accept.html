@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="./css/mui.min.css">
+		<link rel="stylesheet" href="css/common.css">
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			.mui-views,
+			.mui-view,
+			.mui-pages,
+			.mui-page,
+			.mui-page-content {
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				width: 100%;
+				height: 100%;
+				background-color: #efeff4;
+			}
+			.mui-pages {
+				top: 46px;
+				height: auto;
+			}
+			.mui-scroll-wrapper,
+			.mui-scroll {
+				background-color: #efeff4;
+			}
+			.mui-page.mui-transitioning {
+				-webkit-transition: -webkit-transform 200ms ease;
+				transition: transform 200ms ease;
+			}
+			.mui-page-left {
+				-webkit-transform: translate3d(0, 0, 0);
+				transform: translate3d(0, 0, 0);
+			}
+			.mui-ios .mui-page-left {
+				-webkit-transform: translate3d(-20%, 0, 0);
+				transform: translate3d(-20%, 0, 0);
+			}
+			.mui-navbar {
+				position: fixed;
+				right: 0;
+				left: 0;
+				z-index: 10;
+				height: 44px;
+				background-color: #f7f7f8;
+			}
+			.mui-navbar .mui-bar {
+				position: absolute;
+				background: transparent;
+				text-align: center;
+			}
+			.mui-android .mui-navbar-inner.mui-navbar-left {
+				opacity: 0;
+			}
+			.mui-ios .mui-navbar-left .mui-left,
+			.mui-ios .mui-navbar-left .mui-center,
+			.mui-ios .mui-navbar-left .mui-right {
+				opacity: 0;
+			}
+			.mui-navbar .mui-btn-nav {
+				-webkit-transition: none;
+				transition: none;
+				-webkit-transition-duration: .0s;
+				transition-duration: .0s;
+			}
+			.mui-navbar .mui-bar .mui-title {
+				display: inline-block;
+				position: static;
+				width: auto;
+			}
+			.mui-page-shadow {
+				position: absolute;
+				right: 100%;
+				top: 0;
+				width: 16px;
+				height: 100%;
+				z-index: -1;
+				content: '';
+			}
+			.mui-page-shadow {
+				background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, .01) 50%, rgba(0, 0, 0, .2) 100%);
+				background: linear-gradient(to right, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, .01) 50%, rgba(0, 0, 0, .2) 100%);
+			}
+			.mui-navbar-inner.mui-transitioning,
+			.mui-navbar-inner .mui-transitioning {
+				-webkit-transition: opacity 200ms ease, -webkit-transform 200ms ease;
+				transition: opacity 200ms ease, transform 200ms ease;
+			}
+			.mui-page {
+				display: none;
+			}
+			.mui-pages .mui-page {
+				display: block;
+			}
+			.mui-page .mui-table-view:first-child {
+				margin-top: 15px;
+			}
+			.mui-page .mui-table-view:last-child {
+				margin-bottom: 30px;
+			}
+			.mui-table-view {
+				margin-top: 20px;
+			}
+			.mui-table-view:after {
+				height: 0;
+			}
+			.mui-table-view span.mui-pull-right {
+				color: #999;
+			}
+			.mui-table-view-divider {
+				background-color: #efeff4;
+				font-size: 14px;
+			}
+			.mui-table-view-divider:before,
+			.mui-table-view-divider:after {
+				height: 0;
+			}
+			.mui-content-padded {
+				margin: 10px 0px;
+			}
+			.mui-locker {
+				margin: 35px auto;
+				display: none;
+			}
+			.title {
+			    font-size: 20px;
+			    text-align: center;
+			    line-height: 40px;
+			    padding: 5px 0 6px 0;
+			    border-bottom: 1px solid #ccc;
+			    background: #fff;
+			    color: darkorange;
+			    margin: 0;
+			}
+			.notice {
+				padding: 20px;
+				background: #fff;
+				margin: 0;
+			}
+			.notice #notice-content {
+				color: #303030;
+			}
+			.notice #notice-content p {
+				margin-bottom: 0;
+			}
+			.cash {
+				background: #fff;
+				border-bottom: 1px solid #ccc;
+			}
+			.cash input {
+				width:100%;
+				height: 40px;
+				line-height: 40px;
+				border-bottom: 1px solid #ccc;
+				border: none;
+				padding: 20px;
+				font-size: 14px;
+			}
+			.icon-static {
+				font-size: 40px;
+				color: red;
+				float: left;
+				margin-right: 10px;
+			}
+			.icon-dynamic {
+				font-size: 40px;
+				color: darkgreen;
+				float: left;
+				margin-right: 10px;
+			}
+			.wallet-info {
+				float:left;
+				padding-top: 5px;
+			}
+			
+			.mui-navbar{height: 60px;box-shadow: none;}
+			.mui-navbar .mui-bar{height: 60px;padding-top: 20px;background: #3dc579;}
+			.mui-bar .mui-btn-link{color: #fff;}
+			.mui-title{color: #fff;font-weight: 600;}
+			
+			.mui-content-padded{margin-top: 30px;}
+			.mui-input-row{background: #fff;}
+			.mui-input-row img{float: left;height: 60px;margin-top: 5px;margin-right: 10px;}
+			.mui-input-row h4{line-height:27px;color: #888888;}
+			.mui-checkbox input[type=checkbox]:checked:before, .mui-radio input[type=radio]:checked:before{
+				color: #3dc579;
+			}
+			#next{width: 80%;margin-left: 10%;height: 50px;background: #3dc579;border: none;margin-top: 30px;}
+			
+			.mui-navbar{height: 60px;box-shadow: none;}
+			.mui-navbar .mui-bar{height: 60px;padding-top: 20px;background: #3dc579;}
+			.mui-bar .mui-btn-link{color: #fff;}
+			.mui-title{color: #fff;font-weight: 600;text-align: center;}
+			#warning-content{margin-top: 10px;}
+			#next{float: left;width: 90%;margin-left: 5%;height: 50px;background: #3dc579;border: none;margin-top: 25px;}
+			
+			.title{float: left;margin-top: 20px;color: #3dc579;font-size: 16px;padding-left: 20px;width: 100%;background: #fff;text-align: left;}
+			#cash{padding-left: 20px;padding-top: 20px;padding-bottom: 5px;}
+			#submit{width: 90%;margin-left: 5%;height: 50px;background: #3dc579;border: none;margin-top: 10px;}
+		
+		</style>
+		<link rel="stylesheet" type="text/css" href="./css/feedback-page.css" />
+	</head>
+
+	<body>
+		<!--页面主结构开始-->
+		<div id="app" class="mui-views">
+			<div class="mui-view">
+				<div class="mui-navbar"></div>
+				<div class="mui-pages"></div>
+			</div>
+		</div>
+		<div id="warning" class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav"></span>
+				</button>
+				<h1 class="mui-center mui-title">取款方式</h1>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<div class="mui-content-padded">
+							<div class="mui-input-row mui-radio" style="padding: 10px;">
+								<label>
+									<img src="images/jingBag.jpg"/>
+									<div class="wallet-info">
+										<h4>静态钱包</h4>
+										<p id="static-fee">您的静态钱包有 0 余额</p>
+									</div>
+								</label>
+								<input name="wallet" value="1" type="radio" style="margin: 27px 10px;"/>
+							</div>
+							<div class="mui-input-row mui-radio" style="padding: 10px; border-top:1px solid #ccc">
+								<label>
+									<img src="images/dongBag.jpg"/>
+									<div class="wallet-info">
+										<h4>动态钱包</h4>
+										<p id="dynamic-fee">您的静态钱包有 0 余额</p>
+									</div>
+								</label>
+								<input name="wallet" value="2" type="radio" style="margin: 27px 10px;"/>
+							</div>
+							<a id="next" type="button" href="#accept" class="mui-btn mui-btn-block mui-btn-primary">下一步</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="accept" class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav"></span>
+				</button>
+				<h1 class="mui-center mui-title">得到帮助</h1>
+			</div>
+			<div class="mui-page-content">
+				<p class="title">您本次申请得到帮助的金额（人民币）</p>
+				<div class="mui-input-row cash">
+					<input id="cash" name="cash" type="tel" value="" placeholder="" />
+				</div>
+				<div class="mui-content-padded notice">
+					<h4 style="color: red;">温馨提示</h4>
+					<div id="notice-content">
+						
+					</div>
+				</div>
+				<button id='submit' type="button" class="mui-btn mui-btn-block mui-btn-green">提交</button>
+			</div>
+		</div>
+
+	</body>
+	<script src="./js/mui.min.js "></script>
+	<script src="./js/mui.view.js "></script>
+	<script src="./js/app.js"></script>
+	<script src="./script/accept.js"></script>
+	<script>
+	var state
+		(function($, doc) {
+			$.init({
+				swipeBack:true
+			});
+			
+			//初始化单页的区域滚动
+			$('.mui-scroll-wrapper').scroll();
+			
+			var viewApi = $('#app').view({
+				defaultPage: '#warning'
+			});
+			
+			var view = viewApi.view;
+			
+			$.plusReady(function() {
+				webPageFunction = function() {
+					plus.webview.currentWebview().close();
+				}
+				
+				var settings = app.getSettings();
+				state = app.getState();
+				
+				var setUserinfoPage = $.preload({
+					"id"  : "setUserinfo",
+					"url" : "set_userinfo.html"
+				});
+				
+				//先判断是否实名认证
+				var data = {};
+				data.username = state.username;
+				plus.nativeUI.showWaiting();
+				app.checkRealAudit(data,function(err) {
+					plus.nativeUI.closeWaiting();
+					if(err){
+						$.alert(err,"拉拉提示", function() {
+							webPageFunction();
+							$.fire(setUserinfoPage, 'show', null);
+							$.openWindow({
+								id: 'setUserinfo',
+								show: {
+									aniShow: 'pop-in'
+								},
+								waiting: {
+									autoShow: false
+								}
+							});
+						});
+						return;
+					} else {
+						//判断是否填写资料
+						var condition1 = ( state.cardbank == "" || state.cardaccount == "" || state.cardnumber == "" || state.cardname == "" ||state.cardbank == "undefined" || state.cardaccount == "undefined" || state.cardnumber == "undefined" || state.cardname == "undefined" );
+						var condition2 = ( state.alipay == "" || state.alipay == "undefined");
+						var condition3 = ( state.lalacoin == "" );
+						
+//						var conditionStr = (condition1) && (condition2) && (condition3);
+						var conditionStr = (condition1) || (condition2) ;
+						if(conditionStr) {
+							$.alert("银行卡 / 支付宝 ，您必须填写完整数据才可提供帮助！","拉拉提示", function() {
+								webPageFunction();
+								$.fire(setUserinfoPage, 'show', null);
+								$.openWindow({
+									id: 'setUserinfo',
+									show: {
+										aniShow: 'pop-in'
+									},
+									waiting: {
+										autoShow: false
+									}
+								});
+							});
+						}
+				
+						var data = {};
+						data.username = state.username;
+						
+						app.getAcceptInfo(data,function(err) {
+							plus.nativeUI.closeWaiting();
+							if(err){
+								plus.nativeUI.toast(err);
+								return;
+							}
+						}); 
+					}
+				});
+				
+				
+				var wallet = 0;
+				
+				$(".mui-content-padded").on("tap", ".mui-radio", function(){
+					wallet = this.getElementsByTagName("input")[0].value;
+				});
+				
+				view.addEventListener('pageBeforeShow', function(e) {
+					if (e.detail.page.id == 'accept') {
+						if(wallet == 0) {
+							mui.alert("请选择您要取款的钱包！","拉拉平台");
+							viewApi.back();
+						}
+					}
+				});
+				
+				var mainPage = $.preload({
+					"id" : "main",
+					"url" : "main.html"
+				});
+				
+				var submitButton = doc.getElementById("submit");
+				
+				submitButton.addEventListener("tap", function(err){
+					
+					var state = app.getState();
+					var data = {};
+					data.username = state.username;
+					data.wallet = wallet;
+					data.cash = doc.getElementById("cash").value;
+					
+					app.sendAccept(data, function(err) {
+						if(err) {
+							plus.nativeUI.toast(err);
+							return;
+						}
+						$.fire(mainPage, 'refresh', null);
+						$.alert("申请成功，请等待系统匹配！","拉拉平台","",function(e){
+							$.back();
+							$.back();
+						});
+					});
+					
+				});
+				
+//				view.addEventListener('pageShow', function(e) {
+//				});
+//				view.addEventListener('pageBeforeBack', function(e) {
+//				});
+//				view.addEventListener('pageBack', function(e) {
+//				});
+				
+				
+			});
+			//处理view的后退与webview后退
+			var oldBack = $.back;
+			$.back = function() {
+				if (viewApi.canBack()) { //如果view可以后退，则执行view的后退
+					viewApi.back();
+				} else { //执行webview后退
+					plus.webview.currentWebview().close();
+					oldBack();
+				}
+			};
+		}(mui, document));
+	</script>
+
+</html>

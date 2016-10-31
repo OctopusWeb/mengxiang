@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" href="css/dynamicDetail.css">
+	</head>
+	<style type="text/css">
+		.mui-navigate-right:after, .mui-push-left:after, .mui-push-right:after{font-size: 18px;}
+		.mui-bar{height: 60px;padding-top: 20px;background: #3dc579;box-shadow: none;}
+			.mui-bar a{color: #fff;}
+			.mui-title{color: #fff;font-weight: 600;}
+			
+			#mui_nav{background: none;height: 30px}
+			#mui_nav a{width: 25%;position: relative;background: #fff;border-top: 1px #ccc solid;height: 60px;}
+			#mui_nav img{position: absolute;width: 20px;left: 50%;margin-left: -10px;top: 10px;}
+			#mui_nav span{color: #727272;font-size: 14px;float: left;width: 100%;margin-top: 20px;}
+			#mui-tab-label1{color: #3dc579;}
+			
+			.mui-content{margin-top:20px;}
+	</style>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="title" class="mui-title">动态钱包明细</h1>
+		</header>
+		<nav class="mui-bar mui-bar-tab" id="mui_nav">
+			<a class="home-tab-item" id="index_main">
+				<img src="images/icon11.png"/>
+				<span class="mui-tab-label"  style="color: #3dc579;">互助</span>
+			</a>
+			<a class="home-tab-item" id="index_expanded">
+				<img src="images/icon2.png"/> 
+				<span class="mui-tab-label">推广</span>
+			</a>
+			<a class="home-tab-item" id="index_shop">
+				<img src="images/icon3.png"/>
+				<span class="mui-tab-label">商城</span>
+			</a>
+			<a class="home-tab-item" id="index_user">
+				<img src="images/icon4.png"/>
+				<span class="mui-tab-label">个人</span>
+			</a>
+		</nav>
+		<div class="mui-content">
+			<div id="segmentedControl" class="mui-segmented-control">
+				<a class="mui-control-item mui-active" href="#record1mobile">
+					代数奖
+				</a>
+				<a class="mui-control-item" href="#record3mobile">
+					签到奖
+				</a>
+			</div>
+			<div id="slideProgressBar" class="mui-slider-progress-bar mui-col-xs-4"></div>
+			<div class="mui-slider-group record-list">
+				<div id="record1mobile" class="mui-control-content mui-active">
+					<div class="mui-card" style="margin: 0;padding:0;">
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell mui-collapse">
+								<a class="mui-navigate-right" href="#" id="grade_team1_btn">
+									一级团队
+									<span class="mui-badge mui-badge-warning" id="item1_count">0</span>
+								</a>
+								<div class="mui-collapse-content">
+									<ul class="mui-table-view get-detail-show" id="grade_team1"></ul>
+								</div>
+							</li>
+							<li class="mui-table-view-cell mui-collapse" id="grade_team2_btn">
+								<a class="mui-navigate-right" href="#">
+									二级团队
+									<span class="mui-badge mui-badge-warning" id="item2_count">0</span>
+								</a>
+								<div class="mui-collapse-content">
+									<ul class="mui-table-view get-detail-show" id="grade_team2"></ul>
+								</div>
+							</li>
+							<li class="mui-table-view-cell mui-collapse" id="grade_team3_btn">
+								<a class="mui-navigate-right" href="#">
+									三级团队
+									<span class="mui-badge mui-badge-warning" id="item3_count">0</span>
+								</a>
+								<div class="mui-collapse-content">
+									<ul class="mui-table-view get-detail-show" id="grade_team3"></ul>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div id="record3mobile" class="mui-control-content">
+					<ul class="mui-table-view" id="sign_list"></ul>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/mui.min.js"></script>
+	<script src="js/app.js"></script>
+	<script src="script/dynamicDetail.js"></script>
+	<script>
+		(function($, doc) {
+			$.init({
+				swipeBack:true //启用右滑关闭功能
+			});
+			
+			$.plusReady(function() {
+				plus.nativeUI.showWaiting();
+				setTimeout(function() {
+					plus.nativeUI.closeWaiting();
+				},2000)
+				webPageFunction = function() {
+					plus.webview.currentWebview().close();
+				}
+				var settings = app.getSettings();
+				plus.screen.lockOrientation("portrait-primary");
+				
+				var endCount = 0;
+				
+				var state = app.getState();
+				var data = {};
+				data.username = state.username;
+				app.getList(data, "sign_list", function(err) {
+					if (err) {
+						plus.nativeUI.toast(err);
+						return;
+					}
+				});
+				
+				function checkSelect(targetObj) {
+					var isLoad = targetObj.getAttribute("isload");
+					if(typeof isLoad != "undefined" && isLoad == 1) {
+						return true;
+					}
+					return false;
+				}
+				
+				doc.getElementById("grade_team1_btn").addEventListener("tap", function(){
+					if(!checkSelect(this)) {
+						plus.nativeUI.showWaiting();
+						app.getGradeList(data, 1, "1", function(err) {
+							plus.nativeUI.closeWaiting();
+							doc.getElementById("grade_team1_btn").setAttribute("isload",1);
+							if (err) {
+								plus.nativeUI.toast(err);
+								return;
+							}
+						});
+					}
+				});
+				doc.getElementById("grade_team1_btn").addEventListener("longtap", function(){
+					plus.nativeUI.showWaiting();
+					app.getGradeList(data, 1, "1", function(err) {
+						plus.nativeUI.closeWaiting();
+						doc.getElementById("grade_team1_btn").setAttribute("isload",1);
+						if (err) {
+							plus.nativeUI.toast(err);
+							return;
+						}
+					});
+				});
+				doc.getElementById("grade_team2_btn").addEventListener("tap", function(){
+					if(!checkSelect(this)) {
+						plus.nativeUI.showWaiting();
+						app.getGradeList(data, 2, "2", function(err) {
+							plus.nativeUI.closeWaiting();
+							doc.getElementById("grade_team2_btn").setAttribute("isload",1);
+							if (err) {
+								plus.nativeUI.toast(err);
+								return;
+							}
+						});
+					}
+				});
+				doc.getElementById("grade_team2_btn").addEventListener("longtap", function(){
+					plus.nativeUI.showWaiting();
+					app.getGradeList(data, 2, "2", function(err) {
+						plus.nativeUI.closeWaiting();
+						doc.getElementById("grade_team2_btn").setAttribute("isload",1);
+						if (err) {
+							plus.nativeUI.toast(err);
+							return;
+						}
+					});
+				});
+				doc.getElementById("grade_team3_btn").addEventListener("tap", function(){
+					if(!checkSelect(this)) {
+						plus.nativeUI.showWaiting();
+						app.getGradeList(data, 3, "3", function(err) {
+							plus.nativeUI.closeWaiting();
+							doc.getElementById("grade_team3_btn").setAttribute("isload",1);
+							if (err) {
+								plus.nativeUI.toast(err);
+								return;
+							}
+						});
+					}
+				});
+				doc.getElementById("grade_team3_btn").addEventListener("longtap", function(){
+					plus.nativeUI.showWaiting();
+					app.getGradeList(data, 3, "3", function(err) {
+						plus.nativeUI.closeWaiting();
+						doc.getElementById("grade_team3_btn").setAttribute("isload",1);
+						if (err) {
+							plus.nativeUI.toast(err);
+							return;
+						}
+					});
+				});
+				
+				$(".get-detail-show").on("tap", "li", function(e){
+					var lid = parseInt(this.getAttribute("log-id"));
+					if(lid == 0) {
+						plus.nativeUI.toast("无详细记录");
+						return;
+					} else {
+						var data = {}
+						data.username = state.username;
+						data.lid = lid;
+						app.getLogDetail(data, function(err) {
+							if (err) {
+								plus.nativeUI.toast(err);
+								return;
+							}
+						});
+					}
+				});
+			});
+			$.back = function() {
+					plus.webview.currentWebview().close();
+					oldBack();
+			};
+		}(mui, document));
+	</script>
+</html>

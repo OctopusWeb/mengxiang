@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" href="css/walletNew.css">
+	</head>	
+	<style type="text/css">
+			.mui-bar{height: 60px;padding-top: 20px;background: #3dc579;box-shadow: none;}
+			.mui-bar a{color: #fff;}
+			.mui-title{color: #fff;font-weight: 600;}
+			
+			#mui_nav{background: none;height: 30px}
+			#mui_nav a{width: 25%;position: relative;background: #fff;border-top: 1px #ccc solid;height: 60px;}
+			#mui_nav img{position: absolute;width: 20px;left: 50%;margin-left: -10px;top: 10px;}
+			#mui_nav span{color: #727272;font-size: 14px;float: left;width: 100%;margin-top: 20px;}
+			#mui-tab-label1{color: #3dc579;}
+			
+			.mui-content{margin-top: 20px;}
+	</style>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="title" class="mui-title">钱包总览</h1>
+		</header>
+		<nav class="mui-bar mui-bar-tab" id="mui_nav">
+			<a class="home-tab-item mui-active" id="index_main">
+				<img src="images/icon11.png"/>
+				<span class="mui-tab-label"  style="color: #3dc579;">互助</span>
+			</a>
+			<a class="home-tab-item" id="index_expanded">
+				<img src="images/icon2.png"/> 
+				<span class="mui-tab-label">推广</span>
+			</a>
+			<a class="home-tab-item" id="index_shop">
+				<img src="images/icon3.png"/>
+				<span class="mui-tab-label">商城</span>
+			</a>
+			<a class="home-tab-item" id="index_user">
+				<img src="images/icon4.png"/>
+				<span class="mui-tab-label">个人</span>
+			</a>
+		</nav>
+		<div class="mui-content">
+			<div class="title">
+				点击对应钱包可看到该钱包的详细记录
+			</div>
+			<div class="bag" id='staticWallet'>
+				<div class="set_icon">
+					<span class="iconfont"><img src="images/jingtai-icon.png"/></span>
+				</div>
+				<div class="set_info">
+					<div class="set_name">静态钱包</div>
+					<div class="set_detail">
+						<p>0.00</p>
+					</div>
+				</div>
+			</div>
+			<div class="bag" id='dynamicWallet'>
+				<div class="set_icon">
+					<span class="iconfont"><img src="images/dongtai-icon.png"/></span>
+				</div>
+				<div class="set_info">
+					<div class="set_name">动态钱包</div>
+					<div class="set_detail">
+						<p>0.00</p>
+					</div>
+				</div>
+			</div>
+			<div class="bag" id='frozenWallet'>
+				<div class="set_icon">
+					<span class="iconfont"><img src="images/dongjie-icon.png"/></span>
+				</div>
+				<div class="set_info">
+					<div class="set_name">冻结钱包</div>
+					<div class="set_detail">
+						<p>0.00</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/mui.min.js"></script>
+	<script src="js/app.js"></script>
+	<script src="script/user.js"></script>
+	<script>
+		(function($, doc) {
+			$.init({
+				swipeBack:true,
+			});
+			$.plusReady(function() {
+				webPageFunction = function() {
+					plus.webview.currentWebview().close();
+				}
+				var self = plus.webview.currentWebview();
+				
+				plus.nativeUI.showWaiting();
+				var state = app.getState();
+				
+				var staticWalletButton = doc.getElementById("staticWallet");
+				var dynamicWalletButton = doc.getElementById("dynamicWallet");
+				var frozenWalletButton = doc.getElementById("frozenWallet");
+				
+				var data = {};
+				data.username = state.username;
+				
+				app.getWallet(data, function(err){
+					plus.nativeUI.closeWaiting();
+					if(err) {
+						plus.nativeUI.toast(err);
+						return;
+					}
+					var newState = app.getState();
+					staticWalletButton.querySelector(".set_detail").innerHTML = "<p>" + newState.staticwallet + "</p>";
+					dynamicWalletButton.querySelector(".set_detail").innerHTML = "<p>" + newState.dynamicwallet + "</p>";
+					frozenWalletButton.querySelector(".set_detail").innerHTML = "<p>" + newState.frozenwallet + "</p>";
+				});
+				
+				staticWalletButton.addEventListener("tap", function(event){
+					$.openWindow({
+						id: 'walletStatic',
+						url: "wallet_static.html",
+						show: {
+							aniShow: 'pop-in'
+						},
+						createNew: true,
+						waiting: {
+							autoShow: false
+						}
+					});
+				});
+				
+				dynamicWalletButton.addEventListener("tap", function(event){
+					$.openWindow({
+						id: 'walletDynamic',
+						url: "wallet_dynamic.html",
+						show: {
+							aniShow: 'pop-in'
+						},
+						createNew: true,
+						waiting: {
+							autoShow: false
+						}
+					});
+				});
+				
+				frozenWalletButton.addEventListener("tap", function(event){
+					$.openWindow({
+						id: 'walletFrozen',
+						url: "wallet_frozen.html",
+						show: {
+							aniShow: 'pop-in'
+						},
+						createNew: true,
+						waiting: {
+							autoShow: false
+						}
+					});
+				});
+				
+			});
+			$.back = function() {
+					plus.webview.currentWebview().close();
+					oldBack();
+			};
+		}(mui, document));		
+	</script>
+</html>

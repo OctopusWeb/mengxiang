@@ -1,0 +1,964 @@
+{
+	"@platforms": [
+		"android",
+		"iPhone",
+		"iPad"
+	],
+	"id": "H5E4F6628",/*应用的标识，创建应用时自动生成，勿手动修改*/
+	"name": "梦想合伙人",/*应用名称，程序桌面图标名称*/
+	"version": {
+		"name": "1.1.0",/*应用版本名称*/
+		"code": ""
+	},
+	"description": "拉拉V5",/*应用描述信息*/
+	"icons": {
+		"72": "icon.png"
+	},
+	"launch_path": "index.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
+	"developer": {
+		"name": "JohnnyTin",/*开发者名称*/
+		"email": "yindangdj@163.com",/*开发者邮箱地址*/
+		"url": ""
+	},
+	"permissions": {
+
+
+
+		"Cache": {
+			"description": "管理应用缓存"
+		},
+		"Camera": {
+			"description": "访问摄像头"
+		},
+		"Console": {
+			"description": "跟踪调试输出日志"
+		},
+		"Contacts": {},
+		"Device": {
+			"description": "访问设备信息"
+		},
+		"Downloader": {
+			"description": "文件下载管理"
+		},
+		"Events": {
+			"description": "应用扩展事件"
+		},
+		"File": {
+			"description": "访问本地文件系统"
+		},
+		"Gallery": {
+			"description": "访问系统相册"
+		},
+
+		"Invocation": {
+			"description": "使用Native.js能力"
+		},
+		
+		
+		"Storage": {
+			"description": "管理应用本地数据"
+		},
+
+
+		"Runtime": {
+			"description": "访问运行期环境"
+		},
+		"XMLHttpRequest": {
+			"description": "跨域网络访问"
+		},
+		
+		"Barcode": {
+			"description": "管理二维码扫描插件"
+		},
+		
+
+		"Webview": {
+			"description": "窗口管理"
+		},
+		"NativeUI": {
+			"description": "原生UI控件"
+		},
+		"Navigator": {
+			"description": "浏览器信息"
+		},
+		"NativeObj": {
+			"description": "原生对象"
+		}
+	},
+	"plus": {
+		"splashscreen": {
+			"autoclose": true,/*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
+			"waiting": false,
+			"delay": "3000"
+		},
+		"popGesture": "close",/*设置应用默认侧滑返回关闭Webview窗口，"none"为无侧滑返回功能，"hide"为侧滑隐藏Webview窗口。参考http://ask.dcloud.net.cn/article/102*/
+		"runmode": "normal",/*应用的首次启动运行模式，可取liberate或normal，liberate模式在第一次启动时将解压应用资源（Android平台File API才可正常访问_www目录）*/
+		"signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",/*可选，保留给应用签名，暂不使用*/
+		"distribute": {
+			"apple": {
+				"appid": "",/*iOS应用标识，苹果开发网站申请的appid，如io.dcloud.HelloH5*/
+				"mobileprovision": "",/*iOS应用打包配置文件*/
+				"password": "",/*iOS应用打包个人证书导入密码*/
+				"p12": "",/*iOS应用打包个人证书，打包配置文件关联的个人证书*/
+				"devices": "universal",/*iOS应用支持的设备类型，可取值iphone/ipad/universal*/
+				"frameworks": [],
+				"UIReserveStatusbarOffset": false
+			},
+			"google": {
+				"packagename": "",/*Android应用包名，如io.dcloud.HelloH5*/
+				"keystore": "",/*Android应用打包使用的密钥库文件*/
+				"password": "",/*Android应用打包使用密钥库中证书的密码*/
+				"aliasname": "",/*Android应用打包使用密钥库中证书的别名*/
+				"ImmersedStatusbar":true,
+				"permissions": ["<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>","<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>","<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>","<uses-permission android:name=\"android.permission.VIBRATE\"/>","<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>","<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>","<uses-permission android:name=\"android.permission.CALL_PHONE\"/>","<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>","<uses-feature android:name=\"android.hardware.camera.autofocus\"/>","<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>","<uses-feature android:name=\"android.hardware.camera\"/>","<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.CAMERA\"/>"]
+			},
+			"orientation": [
+				"portrait-primary",
+				"portrait-secondary"
+			],/*应用支持的方向，portrait-primary：竖屏正方向；portrait-secondary：竖屏反方向；landscape-primary：横屏正方向；landscape-secondary：横屏反方向*/
+			"icons": {
+				"ios": {
+					"prerendered": true, /*应用图标是否已经高亮处理，在iOS6及以下设备上有效*/
+					"auto": "", /*应用图标，分辨率：512x512，用于自动生成各种尺寸程序图标*/
+					"iphone": {
+						"normal": "unpackage/res/icons/57x57.png", /*iPhone3/3GS程序图标，分辨率：57x57*/
+						"retina": "unpackage/res/icons/114x114.png", /*iPhone4程序图标，分辨率：114x114*/
+						"retina7": "unpackage/res/icons/120x120.png", /*iPhone4S/5/6程序图标，分辨率：120x120*/
+						"retina8": "unpackage/res/icons/180x180.png", /*iPhone6 Plus程序图标，分辨率：180x180*/
+						"spotlight-normal": "unpackage/res/icons/29x29.png", /*iPhone3/3GS Spotlight搜索程序图标，分辨率：29x29*/
+						"spotlight-retina": "unpackage/res/icons/58x58.png", /*iPhone4 Spotlight搜索程序图标，分辨率：58x58*/
+						"spotlight-retina7": "unpackage/res/icons/80x80.png", /*iPhone4S/5/6 Spotlight搜索程序图标，分辨率：80x80*/
+						"settings-normal": "unpackage/res/icons/29x29.png", /*iPhone4设置页面程序图标，分辨率：29x29*/
+						"settings-retina": "unpackage/res/icons/58x58.png", /*iPhone4S/5/6设置页面程序图标，分辨率：58x58*/
+						"settings-retina8": "unpackage/res/icons/87x87.png"
+					},
+					"ipad": {
+						"normal": "unpackage/res/icons/72x72.png", /*iPad普通屏幕程序图标，分辨率：72x72*/
+						"retina": "unpackage/res/icons/144x144.png", /*iPad高分屏程序图标，分辨率：144x144*/
+						"normal7": "unpackage/res/icons/76x76.png", /*iPad iOS7程序图标，分辨率：76x76*/
+						"retina7": "unpackage/res/icons/152x152.png", /*iPad iOS7高分屏程序图标，分辨率：152x152*/
+						"spotlight-normal": "unpackage/res/icons/50x50.png", /*iPad Spotlight搜索程序图标，分辨率：50x50*/
+						"spotlight-retina": "unpackage/res/icons/100x100.png", /*iPad高分屏Spotlight搜索程序图标，分辨率：100x100*/
+						"spotlight-normal7": "unpackage/res/icons/40x40.png",/*iPad iOS7 Spotlight搜索程序图标，分辨率：40x40*/
+						"spotlight-retina7": "unpackage/res/icons/80x80.png",/*iPad iOS7高分屏Spotlight搜索程序图标，分辨率：80x80*/
+						"settings-normal": "unpackage/res/icons/29x29.png",/*iPad设置页面程序图标，分辨率：29x29*/
+						"settings-retina": "unpackage/res/icons/58x58.png"
+					}
+				},
+				"android": {
+					"mdpi": "unpackage/res/icons/48x48.png", /*普通屏程序图标，分辨率：48x48*/
+					"ldpi": "unpackage/res/icons/48x48.png", /*大屏程序图标，分辨率：48x48*/
+					"hdpi": "unpackage/res/icons/72x72.png", /*高分屏程序图标，分辨率：72x72*/
+					"xhdpi": "unpackage/res/icons/96x96.png",/*720P高分屏程序图标，分辨率：96x96*/
+					"xxhdpi": "unpackage/res/icons/144x144.png"
+				}
+			},
+			"splashscreen": {
+				"ios": {
+					"iphone": {"default":"C:/Users/Administrator/Desktop/first.png","retina55":"C:/Users/Administrator/Desktop/first.png","retina47":"C:/Users/Administrator/Desktop/first.png","retina40":"C:/Users/Administrator/Desktop/first.png","retina35":"C:/Users/Administrator/Desktop/first.png","retina55l":"C:/Users/Administrator/Desktop/first.png"
+						 /*iPhone3启动图片选，分辨率：320x480*/
+						/*3.5英寸设备(iPhone4)启动图片，分辨率：640x960*/
+						/*4.0 英寸设备(iPhone5/iPhone5s)启动图片，分辨率：640x1136*/
+						/*4.7 英寸设备(iPhone6)启动图片，分辨率：750x1334*/
+						/*5.5 英寸设备(iPhone6 Plus)启动图片，分辨率：1242x2208*/
+						
+					},
+					"ipad": {"portrait":"C:/Users/Administrator/Desktop/first.png","portrait7":"C:/Users/Administrator/Desktop/first.png","landscape":"C:/Users/Administrator/Desktop/first.png","landscape7":"C:/Users/Administrator/Desktop/first.png","portrait-retina":"C:/Users/Administrator/Desktop/first.png","portrait-retina7":"C:/Users/Administrator/Desktop/first.png","landscape-retina":"C:/Users/Administrator/Desktop/first.png","landscape-retina7":"C:/Users/Administrator/Desktop/first.png"
+						 /*iPad竖屏启动图片，分辨率：768x1004*/
+						/*iPad高分屏竖屏图片，分辨率：1536x2008*/
+						 /*iPad横屏启动图片，分辨率：1024x748*/
+						 /*iPad高分屏横屏启动图片，分辨率：2048x1496*/
+						 /*iPad iOS7竖屏启动图片，分辨率：768x1024*/
+						/*iPad iOS7高分屏竖屏图片，分辨率：1536x2048*/
+						 /*iPad iOS7横屏启动图片，分辨率：1024x768*/
+						
+					}
+				},
+				"android": {"hdpi":"C:/Users/Administrator/Desktop/first.png","ldpi":"C:/Users/Administrator/Desktop/first.png","mdpi":"C:/Users/Administrator/Desktop/first.png","xhdpi":"C:/Users/Administrator/Desktop/first.png","xxhdpi":"C:/Users/Administrator/Desktop/first.png"
+					 /*普通屏启动图片，分辨率：240x282*/
+					 /*大屏启动图片，分辨率：320x442*/
+					 /*高分屏启动图片，分辨率：480x762*/
+					 /*720P高分屏启动图片，分辨率：720x1242*/
+					
+				}
+			},
+			"debug": false
+		}
+	},
+	"dependencies": {
+		"pages": {
+			"index.html": {
+				"resources": [
+					"js/app.js",
+					"js/mui.min.js",
+					"css/login.css",
+					"css/mui.min.css",
+					"css/style.css",
+					"js/mui.enterfocus.js",
+					"fonts/mui.ttf",
+					"images/icon.png",
+					"script/login.js",
+					"images/banner.png"
+				],
+				"refer": [
+					"main.html",
+					"user.html",
+					"expanded.html",
+					"shop.html",
+					"register.html"
+				],
+				"priority": 0
+			},
+			"main.html": {
+				"resources": [
+					"index.html",
+					"fonts/mui.ttf",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"css/font-awesome.min.css",
+					"fonts/fontawesome-webfont.ttf",
+					"user.html",
+					"css/common.css",
+					"fonts/iconfont.ttf",
+					"fonts/iconfont.woff",
+					"home.html",
+					"css/home.css",
+					"css/main.css",
+					"js/app.js",
+					"js/mui.enterfocus.js",
+					"script/main.js",
+					"shop.html",
+					"main_data.html",
+					"images/bag.png",
+					"fonts/iconfont.eot",
+					"fonts/iconfont.svg",
+					"js/update.js",
+					"images/cbd.jpg",
+					"images/icon.png",
+					"script/user.js",
+					"images/nav2.jpg",
+					"images/icon11.png",
+					"images/nav3.jpg",
+					"images/icon3.png",
+					"images/nav1.jpg",
+					"images/icon2.png",
+					"images/banner.jpg",
+					"images/icon4.png",
+					"images/indexInfo.jpg",
+					"script/announce1.js",
+					"images/nav1.png",
+					"images/nav2.png",
+					"images/nav3.png"
+				],
+				"refer": [
+					"home_data.html",
+					"expanded.html",
+					"wallet.html",
+					"provide.html",
+					"accept.html",
+					"announce.html",
+					"main.html"
+				],
+				"priority": 0
+			},
+			"user.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/common.css",
+					"main.html",
+					"script/user.js",
+					"fonts/iconfont.woff",
+					"css/user.css",
+					"js/app.js",
+					"images/logo.png",
+					"fonts/iconfont.eot",
+					"fonts/iconfont.ttf",
+					"fonts/iconfont.svg",
+					"images/headImg.png",
+					"images/icon41.png",
+					"images/user-icon.png",
+					"images/icon1.png",
+					"images/icon3.png",
+					"images/icon2.png",
+					"images/head.jpg"
+				],
+				"refer": [
+					"index.html",
+					"deal_record.html",
+					"change_password.html",
+					"set_bank.html",
+					"wallet.html",
+					"question.html",
+					"feedback.html",
+					"announce.html"
+				],
+				"priority": 0
+			},
+			"home.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/home.css",
+					"home_data.html",
+					"css/common.css",
+					"fonts/iconfont.woff",
+					"js/app.js",
+					"js/mui.enterfocus.js",
+					"user.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"home_data.html": {
+				"resources": [
+					"css/home.css",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"css/common.css",
+					"fonts/iconfont.woff",
+					"user.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"shop.html": {
+				"resources": [
+					"main.html",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"images/cbd.jpg",
+					"images/muwu.jpg",
+					"images/yuantiao.jpg",
+					"images/shuijiao.jpg",
+					"images/shop1.jpg",
+					"images/shop2.jpg",
+					"js/app.js",
+					"fonts/iconfont.woff",
+					"fonts/iconfont.eot",
+					"fonts/iconfont.ttf",
+					"fonts/iconfont.svg",
+					"images/shangpin.png",
+					"images/icon1.png",
+					"images/icon31.png",
+					"images/loading.jpg"
+				],
+				"refer": [
+					"expanded.html"
+				],
+				"priority": 0
+			},
+			"expanded.html": {
+				"resources": [
+					"css/common.css",
+					"fonts/mui.ttf",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"css/expanded.css",
+					"fonts/iconfont.woff",
+					"script/expanded.js",
+					"js/app.js",
+					"fonts/iconfont.eot",
+					"fonts/iconfont.ttf",
+					"fonts/iconfont.svg",
+					"images/icon21.png",
+					"images/head.jpg",
+					"images/icon3.png",
+					"images/icon4.png",
+					"images/icon1.png"
+				],
+				"refer": [
+					"team_detail.html",
+					"sell_activate.html",
+					"user.html"
+				],
+				"priority": 0
+			},
+			"main_data.html": {
+				"resources": [
+					"js/app.js",
+					"css/main.css",
+					"js/mui.min.js",
+					"css/common.css",
+					"css/mui.min.css",
+					"script/main.js",
+					"fonts/iconfont.woff",
+					"fonts/mui.ttf",
+					"fonts/iconfont.eot",
+					"fonts/iconfont.ttf",
+					"fonts/iconfont.svg",
+					"images/indexInfo.jpg",
+					"images/nav1.jpg",
+					"images/nav3.jpg"
+				],
+				"refer": [
+					"expanded.html",
+					"user.html",
+					"shop.html",
+					"deal_record_detail.html",
+					"pa_detail.html",
+					"pa_provide_detail.html",
+					"pa_accept_detail.html"
+				],
+				"priority": 0
+			},
+			"team_detail.html": {
+				"resources": [
+					"js/mui.min.js",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"fonts/iconfont.woff",
+					"js/app.js",
+					"css/teamDetail.css",
+					"script/teamDetail.js",
+					"fonts/iconfont.eot",
+					"fonts/iconfont.ttf",
+					"fonts/iconfont.svg",
+					"images/icon1.png",
+					"images/icon21.png",
+					"images/icon4.png",
+					"images/icon3.png"
+				],
+				"refer": [
+					"expanded.html"
+				],
+				"priority": 0
+			},
+			"sell_activate.html": {
+				"resources": [
+					"script/sellActivate.js",
+					"css/teamDetail.css",
+					"js/app.js",
+					"js/mui.min.js",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"fonts/iconfont.woff",
+					"fonts/iconfont.eot",
+					"fonts/iconfont.ttf",
+					"fonts/iconfont.svg"
+				],
+				"refer": [
+					"expanded.html"
+				],
+				"priority": 0
+			},
+			"deal_record.html": {
+				"resources": [
+					"fonts/mui.ttf",
+					"js/app.js",
+					"js/mui.min.js",
+					"css/common.css",
+					"css/mui.min.css",
+					"fonts/iconfont.woff",
+					"css/dealRecord.css",
+					"script/dealRecord.js",
+					"fonts/iconfont.eot",
+					"fonts/iconfont.ttf",
+					"fonts/iconfont.svg"
+				],
+				"refer": [
+					"deal_record_detail.html"
+				],
+				"priority": 0
+			},
+			"deal_record_detail.html": {
+				"resources": [
+					"fonts/mui.ttf",
+					"fonts/iconfont.woff",
+					"js/app.js",
+					"css/dealRecord.css",
+					"js/mui.min.js",
+					"css/common.css",
+					"script/dealRecord.js",
+					"css/mui.min.css",
+					"fonts/iconfont.eot",
+					"fonts/iconfont.ttf",
+					"fonts/iconfont.svg",
+					"images/icon4.png",
+					"images/icon11.png",
+					"images/icon3.png",
+					"images/icon2.png"
+				],
+				"refer": [
+					"pa_provide_detail.html",
+					"pa_accept_detail.html"
+				],
+				"priority": 0
+			},
+			"change_password.html": {
+				"resources": [
+					"css/teamDetail.css",
+					"script/changePassword.js",
+					"js/app.js",
+					"js/mui.min.js",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"fonts/iconfont.woff",
+					"fonts/iconfont.eot",
+					"fonts/iconfont.ttf",
+					"fonts/iconfont.svg",
+					"images/icon1.png",
+					"images/icon41.png",
+					"images/icon3.png",
+					"images/icon2.png"
+				],
+				"refer": [
+					"index.html"
+				],
+				"priority": 0
+			},
+			"set_bank.html": {
+				"resources": [
+					"css/setBank.css",
+					"js/app.js",
+					"script/user.js",
+					"js/mui.min.js",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"fonts/iconfont.woff",
+					"fonts/iconfont.eot",
+					"fonts/iconfont.ttf",
+					"fonts/iconfont.svg",
+					"images/zhiubao.png",
+					"images/pay.png",
+					"images/jingtai-icon.png",
+					"images/icon3.png",
+					"images/icon2.png",
+					"images/icon1.png",
+					"images/icon41.png"
+				],
+				"refer": [
+					"set_userinfo.html"
+				],
+				"priority": 0
+			},
+			"wallet.html": {
+				"resources": [
+					"fonts/mui.ttf",
+					"css/setBank.css",
+					"js/app.js",
+					"script/user.js",
+					"js/mui.min.js",
+					"css/common.css",
+					"css/mui.min.css",
+					"fonts/iconfont.woff",
+					"css/wallet.css",
+					"fonts/iconfont.eot",
+					"fonts/iconfont.ttf",
+					"fonts/iconfont.svg",
+					"images/icon11.png",
+					"images/icon3.png",
+					"images/icon2.png",
+					"images/dongjie-icon.png",
+					"images/icon4.png",
+					"css/walletNew.css",
+					"images/dongtai-icon.png",
+					"images/jingtai-icon.png"
+				],
+				"refer": [
+					"wallet_static.html",
+					"wallet_frozen.html",
+					"wallet_dynamic.html"
+				],
+				"priority": 0
+			},
+			"question.html": {
+				"resources": [
+					"script/teamDetail.js",
+					"js/app.js",
+					"js/mui.min.js",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"fonts/iconfont.woff",
+					"images/logo.png",
+					"script/question.js",
+					"css/teamDetail.css",
+					"question_data.html",
+					"css/question.css",
+					"fonts/iconfont.eot",
+					"fonts/iconfont.ttf",
+					"fonts/iconfont.svg"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"question_data.html": {
+				"resources": [
+					"js/app.js",
+					"js/mui.min.js",
+					"css/common.css",
+					"css/mui.min.css",
+					"css/question.css",
+					"script/question.js",
+					"images/logo.png",
+					"fonts/mui.ttf",
+					"fonts/iconfont.eot",
+					"fonts/iconfont.woff",
+					"fonts/iconfont.ttf",
+					"fonts/iconfont.svg",
+					"images/what.jpg"
+				],
+				"refer": [
+					"question_detail.html"
+				],
+				"priority": 0
+			},
+			"question_detail.html": {
+				"resources": [
+					"js/app.js",
+					"js/mui.min.js",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/question.css",
+					"script/question.js",
+					"fonts/iconfont.woff",
+					"fonts/iconfont.eot",
+					"fonts/iconfont.ttf",
+					"fonts/iconfont.svg"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"provide.html": {
+				"resources": [
+					"libs/easymob-webim-sdk/easemob.im-1.0.5.js",
+					"libs/easymob-webim-sdk/json2.js",
+					"libs/easymob-webim-sdk/jquery-1.11.1.js",
+					"js/mui.locker.js",
+					"js/feedback.js",
+					"css/feedback-page.css",
+					"js/feedback-page.js",
+					"libs/easymob-webim-sdk/strophe-custom-2.0.0.js",
+					"js/mui.view.js",
+					"images/iconfont-tianjia.png",
+					"js/app.js",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"script/provide.js"
+				],
+				"refer": [
+					"main.html",
+					"set_userinfo.html"
+				],
+				"priority": 0
+			},
+			"accept.html": {
+				"resources": [
+					"fonts/mui.ttf",
+					"css/feedback-page.css",
+					"script/provide.js",
+					"js/mui.view.js",
+					"js/app.js",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"css/common.css",
+					"fonts/iconfont.woff",
+					"script/accept.js",
+					"fonts/iconfont.eot",
+					"fonts/iconfont.ttf",
+					"fonts/iconfont.svg",
+					"images/iconfont-tianjia.png",
+					"images/dongBag.jpg",
+					"images/jingBag.jpg"
+				],
+				"refer": [
+					"main_data.html",
+					"set_userinfo.html",
+					"main.html"
+				],
+				"priority": 0
+			},
+			"wallet_static.html": {
+				"resources": [
+					"css/staticDetail.css",
+					"js/app.js",
+					"js/mui.min.js",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"script/staticDetail.js",
+					"fonts/iconfont.woff",
+					"fonts/iconfont.eot",
+					"fonts/iconfont.ttf",
+					"fonts/iconfont.svg"
+				],
+				"refer": [
+					"deal_record_detail.html"
+				],
+				"priority": 0
+			},
+			"wallet_frozen.html": {
+				"resources": [
+					"css/frozenDetail.css",
+					"script/forzenDetail.js",
+					"js/app.js",
+					"js/mui.min.js",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"script/frozenDetail.js",
+					"css/mui.min.css",
+					"fonts/iconfont.woff",
+					"fonts/iconfont.eot",
+					"fonts/iconfont.ttf",
+					"fonts/iconfont.svg"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"wallet_dynamic.html": {
+				"resources": [
+					"js/app.js",
+					"js/mui.min.js",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/dynamicDetail.css",
+					"script/dynamicDetail.js",
+					"fonts/iconfont.woff",
+					"fonts/iconfont.eot",
+					"fonts/iconfont.ttf",
+					"fonts/iconfont.svg",
+					"images/icon4.png",
+					"images/icon11.png",
+					"images/icon3.png",
+					"images/icon2.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"pa_detail.html": {
+				"resources": [
+					"script/paDetail.js",
+					"css/dealRecord.css",
+					"fonts/mui.ttf",
+					"js/app.js",
+					"js/mui.min.js",
+					"css/common.css",
+					"css/mui.min.css",
+					"fonts/iconfont.woff"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"pa_provide_detail.html": {
+				"resources": [
+					"script/paProvideDetail.js",
+					"css/paDetail.css",
+					"js/app.js",
+					"js/mui.min.js",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"fonts/iconfont.woff",
+					"images/iconfont-tianjia.png",
+					"script/csdn.js",
+					"libs/crpooer/cropper.min.js",
+					"libs/bootstrap/js/bootstrap.min.js",
+					"libs/bootstrap/css/bootstrap.min.css",
+					"css/uploadImages.css",
+					"libs/crpooer/cropper.min.css",
+					"libs/jquery.min.js",
+					null,
+					"fonts/iconfont.eot",
+					"fonts/iconfont.ttf",
+					"fonts/iconfont.svg",
+					"libs/bootstrap/fonts/glyphicons-halflings-regular.eot",
+					"libs/bootstrap/fonts/glyphicons-halflings-regular.woff2",
+					"libs/bootstrap/fonts/glyphicons-halflings-regular.woff",
+					"libs/bootstrap/fonts/glyphicons-halflings-regular.ttf",
+					"libs/bootstrap/fonts/glyphicons-halflings-regular.svg",
+					"images/icon11.png",
+					"images/icon3.png",
+					"images/icon2.png",
+					"images/icon4.png"
+				],
+				"refer": [
+					"main_data.html",
+					"main.html"
+				],
+				"priority": 0
+			},
+			"pa_accept_detail.html": {
+				"resources": [
+					"css/dealRecord.css",
+					"fonts/mui.ttf",
+					"script/paAcceptDetail.js",
+					"js/app.js",
+					"js/mui.min.js",
+					"css/common.css",
+					"css/mui.min.css",
+					"fonts/iconfont.woff",
+					"css/paDetail.css",
+					"js/mui.zoom.js",
+					"css/preview.css",
+					"js/mui.previewimage.js",
+					"libs/jquery.min.js",
+					"script/countdown.js",
+					"images/digits.png",
+					"fonts/iconfont.eot",
+					"fonts/iconfont.ttf",
+					"fonts/iconfont.svg"
+				],
+				"refer": [
+					"main_data.html",
+					"main.html"
+				],
+				"priority": 0
+			},
+			"register.html": {
+				"resources": [
+					"script/login.js",
+					"js/mui.min.js",
+					"css/login.css",
+					"images/icon.png",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/style.css",
+					"js/mui.enterfocus.js",
+					"css/register.css",
+					"images/reg.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"set_userinfo.html": {
+				"resources": [
+					"libs/crpooer/cropper.min.js",
+					"script/csdn.js",
+					"libs/jquery.min.js",
+					"libs/bootstrap/js/bootstrap.min.js",
+					"libs/bootstrap/css/bootstrap.min.css",
+					"css/uploadImages.css",
+					"css/setUserinfo.css",
+					"libs/crpooer/cropper.min.css",
+					"images/iconfont-tianjia.png",
+					"js/app.js",
+					"script/user.js",
+					"fonts/mui.ttf",
+					"fonts/iconfont.woff",
+					"css/common.css",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"fonts/iconfont.eot",
+					"fonts/iconfont.ttf",
+					"fonts/iconfont.svg",
+					"images/icon3.png",
+					"images/icon2.png",
+					"images/icon1.png",
+					"images/icon41.png"
+				],
+				"refer": [
+					"expanded.html",
+					"main.html",
+					"user.html",
+					"shop.html",
+					"set_bank.html"
+				],
+				"priority": 0
+			},
+			"feedback.html": {
+				"resources": [
+					"js/app.js",
+					"script/user.js",
+					"js/mui.min.js",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"fonts/iconfont.woff",
+					"script/feedback.js",
+					"fonts/iconfont.eot",
+					"fonts/iconfont.ttf",
+					"fonts/iconfont.svg",
+					"images/icon1.png",
+					"images/icon41.png",
+					"images/icon3.png",
+					"images/icon2.png"
+				],
+				"refer": [
+					"expanded.html",
+					"main.html",
+					"user.html",
+					"shop.html"
+				],
+				"priority": 0
+			},
+			"announce.html": {
+				"resources": [
+					"css/feedback-page.css",
+					"script/provide.js",
+					"js/app.js",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"script/announce.js",
+					"images/iconfont-tianjia.png"
+				],
+				"refer": [],
+				"priority": 0
+			}
+		},
+		"idle": {
+			"resources": [
+				"libs/bootstrap/js/bootstrap-select.jquery.json",
+				"images/iconfont-tianjia-line.png",
+				"css/images.css",
+				"libs/easymob-webim-sdk/quickstart.md",
+				"libs/bootstrap/css/bootstrap.min.css.map",
+				"libs/bootstrap/css/bootstrap.css.map",
+				"libs/bootstrap/css/bootstrap-theme.min.css.map",
+				"libs/bootstrap/js/bootstrap-select.js",
+				"images/static_wallet.png",
+				"libs/bootstrap/css/bootstrap-select.css",
+				"libs/bootstrap/css/css.rar",
+				"libs/bootstrap/css/bootstrap.css",
+				"images/icons.png",
+				"fonts/fonts.rar",
+				"libs/bootstrap/css/bootstrap-theme.css",
+				"libs/bootstrap/js/bootstrap.js",
+				"libs/bootstrap/css/bootstrap-theme.css.map",
+				"script/images.js",
+				"images/user-photo.png",
+				"libs/bootstrap/css/bootstrap-theme.min.css"
+			]
+		}
+	},
+	"fullscreen": false,
+	"unpackage": [
+	  "images/qihoo.png",
+	  "images/qq.png",
+	  "images/sinaweibo.png",
+	  "images/user-photo.png",
+	  "images/weixin.png",
+	  "libs/easymob-webim-sdk/quickstart.md",
+	  "css/images.css",
+	  "fonts/fonts.rar",
+	  "images/iconfont-tianjia-line.png",
+	  "images/icons.png",
+	  "images/static_wallet.png",
+	  "libs/bootstrap/css/bootstrap-select.css",
+	  "libs/bootstrap/css/bootstrap-theme.css",
+	  "libs/bootstrap/css/bootstrap-theme.css.map",
+	  "libs/bootstrap/css/bootstrap-theme.min.css",
+	  "libs/bootstrap/css/bootstrap-theme.min.css.map",
+	  "libs/bootstrap/css/bootstrap.css",
+	  "libs/bootstrap/css/bootstrap.css.map",
+	  "libs/bootstrap/css/bootstrap.min.css.map",
+	  "libs/bootstrap/css/css.rar",
+	  "libs/bootstrap/js/bootstrap-select.jquery.json",
+	  "libs/bootstrap/js/bootstrap-select.js",
+	  "libs/bootstrap/js/bootstrap.js",
+	  "script/images.js"
+	]
+}

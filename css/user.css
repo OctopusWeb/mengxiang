@@ -1,0 +1,41 @@
+html,body {
+	background-color: #efeff4;
+}
+.text-header {
+	line-height: 46px;
+}
+.expand-user{width:100%;height:auto;background: #077BBE;}
+.user-name{padding-top:15px;padding-bottom:15px;overflow: hidden;}
+.headImg{width:50%;display: inline-block;float: left;}
+.headImg img{width:50%;height:auto;border-radius: 50%;display: inline-block;float: left;text-align: center;}
+.headImg .name{display: inline-block;float: left;width:40%;height:100px;margin-left:10%;}
+.headImg .name span{float: left;margin-top:10px;line-height:30px;font-size: 20px;color:#fff;line-height:40px}
+.headImg .name button{border: none;background: #ff526e;color:#fff;height:26px;width:56px;padding:0;margin-top:5px;}
+.user-info{width:50%;display: inline-block;float: left;margin-top:15px;}
+.user-info p{color: #fff;line-height: 15px;}
+.optionTable {
+	margin-bottom: 10px;
+	border:none
+}
+.optionTable td {
+	height:50px;
+	padding:0;margin:0;
+	border-bottom: 1px solid #cccccc;
+	text-align: left;
+}
+.optionTable td p{float: left;font-size: 16px;line-height:50px;margin:0;padding:0;
+				margin-left:15px;}	
+.optionTable td:active {
+	background: #eee;
+}
+
+.iconfont1{width:24px;height:24px;display: inline-block;float: left;margin-left:15px;margin-top:13px}
+.icon1{background: url(../images/user-icon.png) 0% 0%;}
+.icon2{background: url(../images/user-icon.png) 0 542px;}
+.icon3{background: url(../images/user-icon.png) 0 460px;}
+.icon4{background: url(../images/user-icon.png) 0 380px;}
+.icon5{background: url(../images/user-icon.png) 0 283px;}
+.icon6{background: url(../images/user-icon.png) 0 200px;}
+.icon7{background: url(../images/user-icon.png) 0 100px;}
+
+.exit{margin-top:10px!important;}

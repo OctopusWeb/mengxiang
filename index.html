@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+    <link href="css/mui.min.css" rel="stylesheet" />
+	<link href="css/style.css" rel="stylesheet" />
+	<link href="css/login.css" rel="stylesheet" />
+	<style type="text/css">
+		.version{width: 100%;position: absolute;bottom: 10px;text-align: center;color: #fff;font-size: 12px;}
+	</style>
+    <script type="text/javascript">
+   		document.addEventListener('plusready', function(){
+   			plus.runtime.getProperty(plus.runtime.appid, function(inf) {
+	            wgtVer = inf.version;
+	            document.getElementsByClassName("version")[0].innerHTML = "当前版本:"+wgtVer
+	        });
+   			//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。"
+   		});  		
+    </script>
+</head>
+<body>
+<div class="mui-content">
+	<div class="app-icons">
+		<img src="images/banner.png" width="65%" /><br><span style="font-size:24px;color: #fff;"></span><br>
+	</div>
+	<form id='login-form' class="mui-input-group"> 
+		<div class="mui-input-row">
+			<label><span class="mui-icon mui-icon-person" style="color:#626262"></span></label>
+			<input id='username' type="number" class="mui-input-clear mui-input" placeholder="账号" value="" />
+		</div>
+		<div class="mui-input-row">
+			<label><span class="mui-icon mui-icon-locked" style="color:#626262"></span></label>
+			<input id='password' type="password" class="mui-input-clear mui-input" placeholder="密码" value="" />
+		</div>
+	</form>
+	<form class="mui-input-group" id="zidong">
+		<ul class="mui-table-view mui-table-view-chevron">
+			<li class="mui-table-view-cell" style="color:#626262;background:none">
+				自动登录
+				<div id="autoLogin" class="mui-switch  mui-switch-blue">
+					<div class="mui-switch-handle"></div>
+				</div>
+			</li>
+		</ul>
+	</form>
+	<div class="mui-content-padded">
+		<button id='login' class="mui-btn mui-btn-block mui-btn-primary">登录</button>
+		<div class="link-area">
+			<a id='reg'>注册账号</a>
+		</div>
+	</div>
+	<div class="version"></div>
+</div>
+
+<script src="js/mui.min.js"></script>
+<script src="js/mui.enterfocus.js"></script>
+<script src="script/login.js"></script>
+<script>
+(function($, doc) {
+	$.init({
+		statusBarBackground: '#f7f7f7',
+		swipeBack:true
+	});
+	function checkSiteState(){
+		app.check_site_state(function(err){
+			if(err) {
+				$.alert(err, "拉拉平台", function(){
+					loginButton.setAttribute("disabled", true);
+					return false;
+				});
+			}
+		});
+		return true;
+	}
+	$.plusReady(function() {
+		plus.screen.lockOrientation("portrait-primary");
+		var settings = app.getSettings();
+		var state = app.getState();
+		var toMain = function() {
+			setTimeout(function() {
+				$.openWindow({
+					url: 'main.html',
+					id: 'main',
+					show: {
+						aniShow: 'pop-in'
+					},
+					waiting: {
+						autoShow: true,
+						title: '正在加载...'
+					}
+				});
+			}, 0);
+		};
+		if(settings.autoLogin && state.token) {
+			if(checkSiteState()) {
+				toMain();
+			}
+		}
+		// close splash
+		setTimeout(function() {
+			//关闭 splash
+			plus.navigator.closeSplashscreen();
+		}, 600);
+		//检查 "登录状态/锁屏状态" 结束
+		var autoLoginButton = doc.getElementById("autoLogin");
+		var loginButton = doc.getElementById('login');
+		var usernameBox = doc.getElementById('username');
+		var passwordBox = doc.getElementById('password');
+		var regButton = doc.getElementById('reg');
+		var forgetButton = doc.getElementById('forgetPassword');
+		loginButton.addEventListener('tap', function(event) {
+			var loginInfo = {
+				username: usernameBox.value,
+				password: passwordBox.value,
+			};
+			if(checkSiteState()) {
+				app.login(loginInfo, function(err) {
+					if (err) {
+						plus.nativeUI.toast(err);
+						return;
+					}
+					toMain();
+				});
+			}
+		});
+		$.enterfocus('#login-form input', function() {
+			$.trigger(loginButton, 'tap');
+		});
+		autoLoginButton.classList[settings.autoLogin ? 'add' : 'remove']('mui-active')
+		autoLoginButton.addEventListener('toggle', function(event) {
+			setTimeout(function() {
+				var isActive = event.detail.isActive;
+				settings.autoLogin = isActive;
+				app.setSettings(settings);
+			}, 50);
+		}, false);
+		
+		regButton.addEventListener('tap', function(event) {
+			if(checkSiteState()) {
+				$.openWindow({
+					id: 'register',
+					url: "register.html",
+					show: {
+						aniShow: 'pop-in'
+					},
+					styles: {
+						popGesture: 'hide'
+					},
+					waiting: {
+						autoShow: false
+					}
+				});
+			}
+		}, false);
+
+		window.addEventListener('resize', function() {
+		}, false);
+		//
+		var backButtonPress = 0;
+		$.back = function(event) {
+			backButtonPress++;
+			if (backButtonPress > 1) {
+				plus.runtime.quit();
+			} else {
+				plus.nativeUI.toast('再按一次退出应用');
+			}
+			setTimeout(function() {
+				backButtonPress = 0;
+			}, 1000);
+			return false;
+		};
+	});
+}(mui, document));
+</script>
+</body>
+</html>

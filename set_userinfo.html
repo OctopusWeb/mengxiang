@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" href="css/setUserinfo.css">
+		<link rel="stylesheet" href="css/uploadImages.css">
+	</head>
+	<style type="text/css">
+		.mui-bar{height: 60px;padding-top: 20px;background: #3dc579;box-shadow: none;}
+			.mui-bar a{color: #fff;}
+			.mui-title{color: #fff;font-weight: 600;}
+			
+			#mui_nav{background: none;height: 30px}
+			#mui_nav a{width: 25%;position: relative;background: #fff;border-top: 1px #ccc solid;height: 60px;}
+			#mui_nav img{position: absolute;width: 20px;left: 50%;margin-left: -10px;top: 10px;}
+			#mui_nav span{color: #727272;font-size: 14px;float: left;width: 100%;margin-top: 20px;}
+			#mui-tab-label1{color: #3dc579;}
+			
+			.mui-content{margin-top:15px;} 
+			.bk{position: absolute;height: 40px;width: 100%;background: none;z-index: 100;display: none;left: 0;}
+			.bk1{height: 100px;}
+			.mui-content-padded{padding-bottom: 40px;}
+	</style>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="title" class="mui-title">编辑资料</h1>
+		</header>
+	     
+		<nav class="mui-bar mui-bar-tab" id="mui_nav">
+			<a class="home-tab-item" id="index_main">
+				<img src="images/icon1.png"/>
+				<span class="mui-tab-label" >互助</span>
+			</a>
+			<a class="home-tab-item" id="index_expanded">
+				<img src="images/icon2.png"/> 
+				<span class="mui-tab-label">推广</span>
+			</a>
+			<a class="home-tab-item" id="index_shop">
+				<img src="images/icon3.png"/>
+				<span class="mui-tab-label">商城</span>
+			</a>
+			<a class="home-tab-item" id="index_user">
+				<img src="images/icon41.png"/>
+				<span class="mui-tab-label" style="color: #3dc579;">个人</span>
+			</a>
+		</nav>
+		<div class="mui-content" style="padding-bottom: 0;">
+			
+			<div class="mui-page-content mui-input-group">
+				<div class="mui-input-row">
+					<div class="bk"></div>
+					<label>真实姓名:</label>
+					<input type="text" id="truename" class="mui-input-clear" placeholder="请输入您的真实姓名" data-input-clear="1">
+				</div>
+				<div class="mui-input-row">
+					<div class="bk"></div>
+					<label>身份证号:</label>
+					<input type="text" id="idCard" class="mui-input-clear" placeholder="请输入您的身份证号" data-input-clear="1">
+				</div>
+			</div>
+		</div>
+		<div class="upload-container">
+			<div class="mui-content-padded" style="margin: 0;">
+				<div class="bk bk1"></div>
+				<label>上传身份证( 正面 )：</label>
+				<div id="changeAvatar" class="touxiang" onclick="showActionSheet()">
+				    <img src="./images/iconfont-tianjia.png">
+				</div>  
+				<div id="spinner">  
+				    <div class="waint-container">  
+				        <div class="waint-coin">  
+				            <span class="mui-spinner"></span>  
+				        </div>  
+				        <div class="want-text">请稍等...</div>  
+				        <div class="clear"></div>  
+				    </div>  
+				</div>  
+			</div>
+		</div>
+		<div class="mui-content" style="padding-top: 0;">
+			<div id="segmentedControl" class="mui-segmented-control" style="margin-top: 20px;width: 98%;margin-left: 1%;">
+				<a class="mui-control-item mui-active" href="#item1mobile">
+					银行卡
+				</a>
+				<a class="mui-control-item" href="#item2mobile">
+					支付宝
+				</a>
+				<a class="mui-control-item" href="#item3mobile">
+					拉拉币
+				</a>
+			</div>
+			<div id="slideProgressBar" class="mui-slider-progress-bar mui-col-xs-4"></div>
+			<div class="mui-slider-group">
+				<div id="item1mobile" class="mui-control-content mui-active mui-input-group">
+					<div class="mui-input-row">
+						<div class="bk"></div>
+						<label>发卡银行:</label>
+						<select id="cardBank" class="mui-select">
+							<option value="中国银行">中国银行</option>
+							<option value="中国工商银行">中国工商银行</option>
+							<option value="中国建设银行">中国建设银行</option>
+							<option value="中国农业银行">中国农业银行</option>
+							<option value="中国邮政储蓄银行">中国邮政储蓄银行</option>
+							<option value="交通银行">交通银行</option>
+							<option value="招商银行">招商银行</option>
+							<option value="中信银行">中信银行</option>
+							<option value="光大银行">光大银行</option>
+							<option value="民生银行">民生银行</option>
+							<option value="兴业银行">兴业银行</option>
+							<option value="华夏银行">华夏银行</option>
+							<option value="上海浦东发展银行">上海浦东发展银行</option>
+							<option value="深圳发展银行">深圳发展银行</option>
+							<option value="广东发展银行">广东发展银行</option>
+							<option value="上海银行">上海银行</option>
+							<option value="平安银行">平安银行</option>
+							<option value="其他银行">其他银行</option>
+		        		</select>
+					</div>
+					<div class="mui-input-row">
+						<div class="bk"></div>
+						<label>开户银行:</label>
+						<input type="text" id="cardAccount" class="mui-input-clear" placeholder="请输入银行卡开户行" data-input-clear="1">
+					</div>
+					<div class="mui-input-row">
+						<div class="bk"></div>
+						<label>户主姓名:</label>
+						<input type="text" id="cardName" class="mui-input-clear" placeholder="请输入银行卡户主姓名" data-input-clear="1">
+					</div>
+					<div class="mui-input-row">
+						<div class="bk"></div>
+						<label>银行卡卡号:</label>
+						<input type="number" id="cardNumber" class="mui-input-clear" placeholder="请输入银行卡卡号" data-input-clear="1">
+					</div>
+				</div>
+				<div id="item2mobile" class="mui-control-content mui-input-group">
+					<div class="mui-input-row">
+						<div class="bk"></div>
+						<label>支付宝账号:</label>
+						<input type="text" id="alipay" class="mui-input-clear" placeholder="请输入您的支付宝账号" data-input-clear="1">
+					</div>
+				</div>
+				<div id="item3mobile" class="mui-control-content mui-input-group">
+					<div class="mui-input-row">
+						<div class="bk"></div>
+						<label>拉拉币账号:</label>
+						<input type="text" id="lalaCoin" class="mui-input-clear" placeholder="请输入您的拉拉币账号" data-input-clear="1">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="mui-content-padded">
+			<button id='submit' type="button" class="mui-btn mui-btn-block">提交</button>
+		</div>
+	</body>
+	<script src="js/mui.min.js"></script>
+	<script src="js/app.js"></script>
+	<script src="libs/jquery.min.js"></script>  
+	<script src="script/user.js"></script>
+	<script src="script/csdn.js"></script>  
+	<script type="text/javascript">
+		(function(mui, doc) {
+			mui.init({
+				swipeBack:true //启用右滑关闭功能
+			});
+			
+			document.addEventListener("show", function(){
+				var state = app.getState();
+				initData(state);
+			});
+			
+			initData = function(state) {
+//				if(state.idcard !="" || state.idcard){
+//					plus.nativeUI.toast("您已编辑过个人资料，请勿重复编辑！");
+//					mui.back();
+//				}
+				if(typeof state.truename != "undefined" && state.truename != null && state.truename != "") {
+					doc.getElementById("truename").value = state.truename;
+					mui(".bk")[0].style.display="block"
+				}
+				if(typeof state.idcard != "undefined" && state.idcard != null && state.idcard != "") {
+					doc.getElementById("idCard").value = state.idcard;
+					mui(".bk")[1].style.display="block"
+				}
+				if(typeof state.cardpath != "undefined" && state.cardpath != null && state.cardpath != "") {
+					document.querySelector("#changeAvatar img").src = app.serverWeb + state.cardpath;
+					document.querySelector("#changeAvatar img").setAttribute("isupload", 1);
+					mui(".bk")[2].style.display="block"
+				}
+				if(typeof state.cardbank != "undefined" && state.cardbank != null && state.cardbank != "") {
+//					mui(".bk")[3].style.display="block"
+					doc.getElementById("cardBank").value = state.cardbank;
+				}
+				if(typeof state.cardaccount != "undefined" && state.cardaccount != null && state.cardaccount != "") {
+//					mui(".bk")[4].style.display="block"
+					doc.getElementById("cardAccount").value = state.cardaccount;
+				}
+				if(typeof state.cardname != "undefined" && state.cardname != null && state.cardname != "") {
+//					mui(".bk")[5].style.display="block"
+					doc.getElementById("cardName").value = state.cardname;
+				}
+				if(typeof state.cardnumber != "undefined" && state.cardnumber != null && state.cardnumber != "") {
+//					mui(".bk")[6].style.display="block"
+					doc.getElementById("cardNumber").value = state.cardnumber;
+				}
+				if(typeof state.aplipay != "undefined" && state.aplipay != null && state.aplipay != "") {
+//					mui(".bk")[7].style.display="block"
+					doc.getElementById("alipay").value = state.aplipay;
+				}
+				if(typeof state.lalacoin != "undefined" && state.lalacoin != null && state.lalacoin != "") {
+//					mui(".bk")[8].style.display="block"
+					doc.getElementById("lalaCoin").value = state.lalacoin;
+				}
+			}
+			
+			mui.plusReady(function() {
+				var state = app.getState();
+				initData(state);
+				
+				var submitButton = doc.getElementById("submit");
+				submitButton.addEventListener("tap", function(){
+					submitButton.setAttribute("disabled", true);
+					
+					var data = {};
+					data.username = state.username;
+					data.truename = doc.getElementById("truename").value;
+					data.idcard = doc.getElementById("idCard").value;
+					data.cardbank = doc.getElementById("cardBank").value;
+					data.cardaccount = doc.getElementById("cardAccount").value;
+					data.cardname = doc.getElementById("cardName").value;
+					data.cardnumber = doc.getElementById("cardNumber").value;
+					data.alipay = doc.getElementById("alipay").value;
+					data.lalacoin = doc.getElementById("lalaCoin").value;
+					data.isupload = doc.getElementById("changeAvatar").querySelector("img").getAttribute("isupload");
+					
+					app.setUserinfo(data, function(err) {
+						submitButton.removeAttribute("disabled");
+						if(err) {
+							plus.nativeUI.toast(err);
+							return;
+						}
+						plus.nativeUI.toast("修改成功！");
+						
+						var setBankPage = mui.preload({
+							"id"  : "setBank",
+							"url" : "set_bank.html"
+						});
+						
+						var newState = app.getState();
+						mui.fire(setBankPage, 'updateData', {data:newState});
+						
+						setTimeout(function(){
+							mui.back();
+						}, 800)
+					});
+					
+				},false);
+				
+			});
+			
+		}(mui, document));
+		
+	</script>
+</html>

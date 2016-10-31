@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="./css/mui.min.css">
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			.mui-views,
+			.mui-view,
+			.mui-pages,
+			.mui-page,
+			.mui-page-content {
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				width: 100%;
+				height: 100%;
+				background-color: #efeff4;
+			}
+			.mui-pages {
+				top: 46px;
+				height: auto;
+			}
+			.mui-scroll-wrapper,
+			.mui-scroll {
+				background-color: #efeff4;
+			}
+			.mui-page.mui-transitioning {
+				-webkit-transition: -webkit-transform 200ms ease;
+				transition: transform 200ms ease;
+			}
+			.mui-page-left {
+				-webkit-transform: translate3d(0, 0, 0);
+				transform: translate3d(0, 0, 0);
+			}
+			.mui-ios .mui-page-left {
+				-webkit-transform: translate3d(-20%, 0, 0);
+				transform: translate3d(-20%, 0, 0);
+			}
+			.mui-navbar {
+				position: fixed;
+				right: 0;
+				left: 0;
+				z-index: 10;
+				height: 44px;
+				background-color: #f7f7f8;
+			}
+			.mui-navbar .mui-bar {
+				position: absolute;
+				background: transparent;
+				text-align: center;
+			}
+			.mui-android .mui-navbar-inner.mui-navbar-left {
+				opacity: 0;
+			}
+			.mui-ios .mui-navbar-left .mui-left,
+			.mui-ios .mui-navbar-left .mui-center,
+			.mui-ios .mui-navbar-left .mui-right {
+				opacity: 0;
+			}
+			.mui-navbar .mui-btn-nav {
+				-webkit-transition: none;
+				transition: none;
+				-webkit-transition-duration: .0s;
+				transition-duration: .0s;
+			}
+			.mui-navbar .mui-bar .mui-title {
+				display: inline-block;
+				position: static;
+				width: auto;
+			}
+			.mui-page-shadow {
+				position: absolute;
+				right: 100%;
+				top: 0;
+				width: 16px;
+				height: 100%;
+				z-index: -1;
+				content: '';
+			}
+			.mui-page-shadow {
+				background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, .01) 50%, rgba(0, 0, 0, .2) 100%);
+				background: linear-gradient(to right, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, .01) 50%, rgba(0, 0, 0, .2) 100%);
+			}
+			.mui-navbar-inner.mui-transitioning,
+			.mui-navbar-inner .mui-transitioning {
+				-webkit-transition: opacity 200ms ease, -webkit-transform 200ms ease;
+				transition: opacity 200ms ease, transform 200ms ease;
+			}
+			.mui-page {
+				display: none;
+			}
+			.mui-pages .mui-page {
+				display: block;
+			}
+			.mui-page .mui-table-view:first-child {
+				margin-top: 15px;
+			}
+			.mui-page .mui-table-view:last-child {
+				margin-bottom: 30px;
+			}
+			.mui-table-view {
+				margin-top: 20px;
+			}
+			.mui-table-view:after {
+				height: 0;
+			}
+			.mui-table-view span.mui-pull-right {
+				color: #999;
+			}
+			.mui-table-view-divider {
+				background-color: #efeff4;
+				font-size: 14px;
+			}
+			.mui-table-view-divider:before,
+			.mui-table-view-divider:after {
+				height: 0;
+			}
+			.mui-content-padded {
+				margin: 10px 0px;
+			}
+			.mui-locker {
+				margin: 35px auto;
+				display: none;
+			}
+			#announce-content p {
+				color: #000;
+			}
+			.title {
+			    font-size: 20px;
+			    text-align: center;
+			    line-height: 40px;
+			    padding: 5px 0 6px 0;
+			    border-bottom: 1px solid #ccc;
+			    background: #fff;
+			    color: darkorange;
+			    margin: 0;
+			}
+			.notice {
+				padding: 20px;
+				background: #fff;
+				margin: 0;
+			}
+			.notice #notice-content {
+				color: #303030;
+			}
+			.notice #notice-content p {
+				margin-bottom: 0;
+			}
+			
+			.mui-bar{height: 60px;padding-top: 20px;background: #3dc579;box-shadow: none;}
+			.mui-bar a{color: #fff;}
+			.mui-title{color: #fff;font-weight: 600;}
+			
+			.mui-scroll-wrapper{float: left;width: 100%;}
+			.mui-scroll{margin-top: 20px;}
+			#announce-content{float: left;margin-top: 110px;background: #fff;}
+			#announce-title1{float: left;z-index: 100;top: 50px;line-height: 50px;background: #fff;color:#727272;width: 105%;}
+			#close{float: left;width: 90%;margin-left: 5%;height: 50px;background: #3dc579;border: none;margin-top: 30px;}
+			
+		</style>
+		<link rel="stylesheet" type="text/css" href="./css/feedback-page.css" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="announce-title" class="mui-title">最新公告</h1>
+		</header>
+		<div class="mui-content-padded">
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<h2 id="announce-title1" class="mui-title">最新公告</h2>
+					<div style="padding: 20px;" id="announce-content">
+					</div>
+					<div class="mui-content-padded" style="background: #fff;">
+						<a id="close" type="button" class="mui-btn mui-btn-block mui-btn-primary">关闭</a>
+					</div>
+				</div>
+			</div> 
+		</div>
+	</body>
+	<script src="./js/mui.min.js "></script>
+	<script src="./js/app.js"></script>
+	<script src="./script/announce.js"></script>
+	<script>
+		(function($, doc) {
+			$.init({
+				swipeBack:true
+			});
+			
+			//初始化单页的区域滚动
+			$('.mui-scroll-wrapper').scroll();
+			
+			$.plusReady(function() {
+				webPageFunction = function() {
+					plus.webview.currentWebview().close();
+				}
+				var settings = app.getSettings();
+				var state = app.getState();
+				
+				app.loadAnnounce(function(err) {
+					if(err) {
+						plus.nativeUI.toast(err);
+						return;
+					}
+				});
+				
+				var closeButton = doc.getElementById("close");
+				closeButton.addEventListener("tap", function(err){
+					$.back();
+				});
+				
+			});
+			//处理view的后退与webview后退
+			var oldBack = $.back;
+			$.back = function() {
+				plus.webview.currentWebview().close();
+				oldBack();
+			};
+		}(mui, document));
+	</script>
+
+</html>

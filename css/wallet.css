@@ -1,0 +1,39 @@
+html,body {
+	background-color: #efeff4;
+}
+.title {
+	font-size: 16px;
+	padding: 20px;
+	color: #CE8B0C;
+	text-align: center;
+}
+.set_icon {
+	float:left;
+	padding: 10px 20px 10px 30px;
+}
+.set_icon span {
+	font-size:40px;
+}
+.set_icon span.icon-zhifubao {
+	font-size: 50px;
+}
+.set_icon span.icon-pengyou {
+	font-size: 50px;
+}
+.set_info {
+	text-align: left;
+}
+.set_name {
+	font-size: 20px;
+}
+.set_detail p {
+	color:#fff;
+	margin: 0;
+	font-size: 40px;
+}
+.set_btn {
+    border-radius: 10px;
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 90%;
+}

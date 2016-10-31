@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" href="css/teamDetail.css">
+		<style type="text/css">
+			.mui-slider-cell .mui-table-cell {
+				-webkit-touch-callout:text;
+				-webkit-user-select:text;
+				-khtml-user-select:text;
+				-moz-user-select:text;
+				-ms-user-select:text;
+				user-select:text;
+				float: left;
+			}
+			.mui-bar{height: 60px;padding-top: 20px;background: #3dc579;box-shadow: none;}
+			.mui-bar a{color: #fff;}
+			.mui-title{color: #fff;font-weight: 600;}
+			
+			#mui_nav{background: none;height: 30px}
+			#mui_nav a{width: 25%;position: relative;background: #fff;border-top: 1px #ccc solid;height: 60px;}
+			#mui_nav img{position: absolute;width: 20px;left: 50%;margin-left: -10px;top: 10px;}
+			#mui_nav span{color: #727272;font-size: 14px;float: left;width: 100%;margin-top: 20px;}
+			#mui-tab-label1{color: #3dc579;}
+			
+			.mui-content{margin-top:15px;}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a id="exit" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="title" class="mui-title">会员信息</h1>
+		</header>
+		<nav class="mui-bar mui-bar-tab" id="mui_nav">
+			<a class="home-tab-item mui-active" id="index_main">
+				<img src="images/icon1.png"/>
+				<span class="mui-tab-label" >互助</span>
+			</a>
+			<a class="home-tab-item" id="index_expanded">
+				<img src="images/icon21.png"/> 
+				<span class="mui-tab-label" style="color: #3dc579;">推广</span>
+			</a>
+			<a class="home-tab-item" id="index_shop">
+				<img src="images/icon3.png"/>
+				<span class="mui-tab-label">商城</span>
+			</a>
+			<a class="home-tab-item" id="index_user">
+				<img src="images/icon4.png"/>
+				<span class="mui-tab-label">个人</span>
+			</a>
+		</nav>
+		<div class="mui-content">
+			<ul class="mui-table-view mui-table-view-striped mui-table-view-condensed">
+				<li class="mui-table-view-cell">
+					<div class="mui-slider-cell">
+						<div class="oa-contact-cell mui-table">
+							<div class="mui-table-cell">
+								会员账号：
+							</div>
+							<div class="mui-table-cell mui-text-left" id="username">
+							</div>
+						</div>
+						<div class="oa-contact-cell mui-table">
+							<div class="mui-table-cell">
+								会员姓名：
+							</div>
+							<div class="mui-table-cell mui-text-left" id="truename">
+							</div>
+						</div>
+						<div class="oa-contact-cell mui-table">
+							<div class="mui-table-cell">
+								注册日期：
+							</div>
+							<div class="mui-table-cell mui-text-left" id="registertime">
+							</div>
+						</div>
+						<div class="oa-contact-cell mui-table">
+							<div class="mui-table-cell">
+								成员等级：
+							</div>
+							<div class="mui-table-cell mui-text-left" id="group">
+							</div>
+						</div>
+						<div class="oa-contact-cell mui-table">
+							<div class="mui-table-cell">
+								当前交易：
+							</div>
+							<div class="mui-table-cell mui-text-left" id="money" style="color:darkred">
+							</div>
+						</div>
+						<div class="oa-contact-cell mui-table">
+							<div class="mui-table-cell">
+								联系方式：
+							</div>
+							<div class="mui-table-cell mui-text-left" id="contact">
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<div class="mui-content-padded" id="btn-div">
+				
+			</div>
+		</div>
+	</body>
+	<script src="js/mui.min.js"></script>
+	<script src="js/app.js"></script>
+	<script src="script/teamDetail.js"></script>
+	<script>
+		(function($, doc) {
+			$.init({
+				swipeBack:true //启用右滑关闭功能
+			});
+			$.plusReady(function() {
+				
+				webPageFunction = function() {
+					plus.webview.currentWebview().close();
+				}
+				
+				plus.screen.lockOrientation("portrait-primary");
+				var self = plus.webview.currentWebview();
+				var userid   = parseInt(self.userid);
+				
+				if(userid == 0) {
+					plus.nativeUI.toast("无效参数！");
+					$.back();
+				}
+				var data = {};
+				data.uid = userid;
+				app.getUserDetail(data, function(err) {
+					if (err) {
+						plus.nativeUI.toast(err);
+						return;
+					}
+				});
+				
+				$("#btn-div").on("tap", "button#activate-btn", function(){
+					var uid = parseInt(this.getAttribute("uid"));
+					if(uid == 0) {
+						plus.nativeUI.toast("参数错误！");
+						return;
+					} else {
+						var state = app.getState();
+						var data = {}
+						data.username = state.username;
+						data.uid = uid;
+						app.activateUser(data, function(err,data_rs) {
+							if (err) {
+								plus.nativeUI.toast(err);
+								return;
+							}
+							var expandedPage = $.preload({
+								"id": 'expanded',
+								"url": 'expanded.html'
+							});
+							var newState = app.getState();
+							$.fire(expandedPage, 'changeCount', null);
+							$.alert("您已成功激活该会员！","拉拉平台",'确定',function(){
+								setTimeout(function() {
+									$.openWindow({
+										id: 'expanded',
+										show: {
+											aniShow: 'pop-in'
+										},
+										waiting: {
+											autoShow: false
+										}
+									});
+								}, 0);
+							});
+						});
+					}
+				});
+			});
+			$.back = function() {
+					plus.webview.currentWebview().close();
+					oldBack();
+			};
+		}(mui, document));
+	</script>
+</html>

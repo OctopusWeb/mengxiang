@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" href="css/staticDetail.css">
+	</head>
+	<style type="text/css">
+		.mui-bar{height: 60px;padding-top: 20px;background: #3dc579;box-shadow: none;}
+			.mui-bar a{color: #fff;}
+			.mui-title{color: #fff;font-weight: 600;}
+			
+			#mui_nav{background: none;height: 30px}
+			#mui_nav a{width: 25%;position: relative;background: #fff;border-top: 1px #ccc solid;height: 60px;}
+			#mui_nav img{position: absolute;width: 20px;left: 50%;margin-left: -10px;top: 10px;}
+			#mui_nav span{color: #727272;font-size: 14px;float: left;width: 100%;margin-top: 20px;}
+			#mui-tab-label1{color: #3dc579;}
+			
+			.mui-content{margin-top:20px;}
+	</style>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="title" class="mui-title">静态钱包明细</h1>
+		</header>
+		<nav class="mui-bar mui-bar-tab" id="mui_nav">
+			<a class="home-tab-item" id="index_main">
+				<img src="images/icon11.png"/>
+				<span class="mui-tab-label"  style="color: #3dc579;">互助</span>
+			</a>
+			<a class="home-tab-item" id="index_expanded">
+				<img src="images/icon2.png"/> 
+				<span class="mui-tab-label">推广</span>
+			</a>
+			<a class="home-tab-item" id="index_shop">
+				<img src="images/icon3.png"/>
+				<span class="mui-tab-label">商城</span>
+			</a>
+			<a class="home-tab-item" id="index_user">
+				<img src="images/icon4.png"/>
+				<span class="mui-tab-label">个人</span>
+			</a>
+		</nav>
+		<div class="mui-content">
+			<div id="segmentedControl" class="mui-segmented-control">
+				<a class="mui-control-item mui-active" href="#record1mobile">
+					未匹配
+				</a>
+				<a class="mui-control-item" href="#record2mobile">
+					未完成
+				</a>
+				<a class="mui-control-item" href="#record3mobile">
+					已完成
+				</a>
+			</div>
+			<div id="slideProgressBar" class="mui-slider-progress-bar mui-col-xs-4"></div> 
+			<div class="mui-slider-group record-list">
+				<div id="record1mobile" class="mui-control-content mui-active">
+					<ul class="mui-table-view" id="unpa_list"></ul>
+				</div>
+				<div id="record2mobile" class="mui-control-content">
+					<ul class="mui-table-view" id="unend_list"></ul>
+				</div>
+				<div id="record3mobile" class="mui-control-content">
+					<ul class="mui-table-view" id="end_list"></ul>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/mui.min.js"></script>
+	<script src="js/app.js"></script>
+	<script src="script/staticDetail.js"></script>
+	<script>
+		(function($, doc) {
+			$.init({
+				swipeBack:true //启用右滑关闭功能
+			});
+			
+			$.plusReady(function() {
+				plus.nativeUI.showWaiting();
+				setTimeout(function() {
+					plus.nativeUI.closeWaiting();
+				},2000)
+				webPageFunction = function() {
+					plus.webview.currentWebview().close();
+				}
+				var settings = app.getSettings();
+				plus.screen.lockOrientation("portrait-primary");
+				
+				var endCount = 0;
+				
+				var state = app.getState();
+				var data = {};
+				data.username = state.username;
+				app.getList(data, 1, "unpa_list", function(err) {
+					endCount++;
+					if (endCount == 3) {
+						plus.nativeUI.closeWaiting();
+					}
+					if (err) {
+						plus.nativeUI.toast(err);
+						return;
+					}
+				});
+				app.getList(data, 2, "unend_list", function(err) {
+					endCount++;
+					if (endCount == 3) {
+						plus.nativeUI.closeWaiting();
+					}
+					if (err) {
+						plus.nativeUI.toast(err);
+						return;
+					}
+				});
+				app.getList(data, 3, "end_list", function(err) {
+					endCount++;
+					if (endCount == 3) {
+						plus.nativeUI.closeWaiting();
+					}
+					if (err) {
+						plus.nativeUI.toast(err);
+						return;
+					}
+				});
+				
+				
+				$(".record-list").on("tap", "button.showDetail", function(){
+					var did = parseInt(this.parentNode.querySelector(".dealid").value);
+					var type = parseInt(this.parentNode.querySelector(".dealtype").value);
+					if(did == 0) {
+						plus.nativeUI.toast("无匹配记录");
+						return;
+					} else {
+						var data = {}
+						data.id = did;
+						data.type = type;
+						openDetail(data);
+					}
+				});
+				var openDetail = function(data) {
+					setTimeout(function() {
+						$.openWindow({
+							id: 'dealDetail',
+							url: "deal_record_detail.html",
+							waiting: {
+								autoShow: true
+							},
+							extras: {
+								dealid: data.id,
+								dealtype: data.type
+							},
+						});
+					}, 0);
+				}
+			});
+			$.back = function() {
+					plus.webview.currentWebview().close();
+					oldBack();
+			};
+		}(mui, document));
+	</script>
+</html>

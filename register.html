@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+    <link href="css/mui.min.css" rel="stylesheet" />
+	<link href="css/style.css" rel="stylesheet" />
+	<link href="css/register.css" rel="stylesheet" />
+</head>
+<body>
+<header class="mui-bar mui-bar-nav">
+	<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+</header>
+<style type="text/css">
+	html,body{height: 100%;width: 100%;position: relative;}
+	.mui-bar{height: 60px;padding-top: 20px;background: none;box-shadow: none;}
+	.mui-bar a{color: #fff;}
+	
+	:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+	    color: #626262;  
+	}
+	
+	::-moz-placeholder { /* Mozilla Firefox 19+ */
+	    color: #626262;
+	}
+	
+	input:-ms-input-placeholder,
+	textarea:-ms-input-placeholder {
+	    color: #626262;
+	}
+	
+	input::-webkit-input-placeholder,
+	textarea::-webkit-input-placeholder {
+	    color: #626262;
+	}
+	body,html{width: 100%;height: 100%;position: relative;background: #deeeee;} 
+	.mui-content{width: 100%;height: 100%;position: relative;background: linear-gradient(0deg,#deeeee,#deeeee)}
+	.mui-input-row label{color: #626262;font-size: 14px;}
+	.mui-input-row input{color: #626262;font-size: 14px;}
+	#register-form{background:none;}
+	#register-form .mui-input-row{height: 50px;line-height: 40px;padding-top:5px}
+	#regBanner{width: 90%;margin-left: 5%;}
+	#register{float: left;width: 100%;height: 50px;background: #3dc579;border: none;margin-top: 10px;color: #fff;}
+	.mui-content-padded{background: #05598e;;margin: 0;padding: 0;}
+	#sendSMS{background: #3dc579;color: #fff;border: none;}
+</style>
+<div class="mui-content">
+	<img src="images/reg.png" id="regBanner"/>
+	<form id='register-form' class="mui-input-group">
+		<div class="mui-input-row">
+			<label><span class="mui-icon mui-icon-contact"></span></label>
+			<input id='username' type="tel" class="mui-input" placeholder="请输入您的手机号" value="" />
+		</div>
+		<div class="mui-input-row">
+			<label><span class="mui-icon mui-icon-email"></span></label>
+			<input id='mobilesms' type="text" class="mui-input-clear mui-input" placeholder="请输入验证码" value="" />
+			<button id="sendSMS" type="button" class="mui-btn mui-btn-danger expend-item" style="width:100px">发送验证码</button>
+		</div>
+		<div class="mui-input-row">
+			<label><span class="mui-icon mui-icon-locked"></span></label>
+			<input id='password' type="password" class="mui-input-clear mui-input" placeholder="请输入您的密码" value="" />
+		</div>
+		<div class="mui-input-row">
+			<label><span class="mui-icon mui-icon-locked"></span></label>
+			<input id='repassword' type="password" class="mui-input-clear mui-input" placeholder="请再次输入您的密码" value="" />
+		</div>
+		<div class="mui-input-row">
+			<label><span class="mui-icon mui-icon-person"></span></label>
+			<input id='truename' type="text" class="mui-input-clear mui-input" placeholder="请输入您的真实姓名" value="" />
+		</div>
+		<div class="mui-input-row">
+			<label><span class="mui-icon mui-icon-contact"></span></label>
+			<input id='parent' type="tel" class="mui-input-clear mui-input" placeholder="请输入邀请人的手机号" value="" />
+		</div>
+		<div class="mui-input-row">
+			<label><span class="mui-icon mui-icon-compose"></span></label>
+			<input id='verify' type="text" class="mui-input" placeholder="请输入验证码" />
+			<img src="http://www.wxhymy.com/Mobile/Main/verify.html?'+Math.random();'" id="verifyImg" class="expend-item" onclick="this.src='http://www.wxhymy.com/Mobile/Main/verify.html?'+Math.random();" />
+		</div>
+	</form>
+	<div class="mui-content-padded"> 
+		<button id="register" type="button" class="mui-btn mui-btn-block mui-btn-success">注　册</button>
+	</div>
+</div>
+
+
+<script src="js/mui.min.js"></script>
+<script src="js/mui.enterfocus.js"></script>
+<script src="script/login.js"></script>
+<script>
+(function($, doc) {
+	$.init({
+		statusBarBackground: '#f7f7f7',
+		swipeBack:true
+	});
+	$.plusReady(function() {
+		plus.screen.lockOrientation("portrait-primary");
+		plus.nativeUI.showWaiting();
+		var settings = app.getSettings();
+		
+		var sendSMSBtn  = doc.getElementById("sendSMS");
+		var registerBtn = doc.getElementById("register");
+		
+		var username = doc.getElementById("username");
+		var mobileSMS = doc.getElementById("mobilesms");
+		var passwordV = doc.getElementById("password");
+		var repassword = doc.getElementById("repassword");
+		var truename = doc.getElementById("truename");
+		var parent = doc.getElementById("parent");
+		var verify = doc.getElementById("verify");
+		
+		app.isReisger(function(err){
+			plus.nativeUI.closeWaiting();
+			if(err) {
+				plus.nativeUI.toast(err);
+				$.back();
+			}
+		});
+		
+		
+		sendSMSBtn.addEventListener("tap", function(){
+			sendSMSBtn.setAttribute("disabled", true);
+			var data = {};
+			data.telephone = username.value;
+			
+			app.sendVerify(data,function(err) {
+				if(err) {
+					sendSMSBtn.removeAttribute("disabled");
+					plus.nativeUI.toast(err);
+					return;
+				}
+				timeTag = 60;
+				clockTimeout = setInterval(function(){
+					if(timeTag == 0) {
+						clearInterval(clockTimeout);
+						sendSMSBtn.innerHTML = "发送验证码";
+						sendSMSBtn.removeAttribute("disabled");
+					} else {
+						sendSMSBtn.innerHTML = timeTag + "秒后重发";
+						timeTag--;
+					}
+				}, 1000);
+			});
+		});
+		registerBtn.addEventListener("tap", function(e){
+			registerBtn.setAttribute("disabled",true);
+			var data = {};
+			data.username = username.value;
+			data.password = passwordV.value;
+			data.repassword = repassword.value;
+			data.mobilesms = mobileSMS.value;
+			data.truename = truename.value;
+			data.parent = parent.value;
+			data.verify = verify.value;
+			app.register(data, function(err){
+				registerBtn.removeAttribute("disabled");
+				if(err) {
+					plus.nativeUI.toast(err);
+					return;
+				}
+				plus.nativeUI.toast("注册成功！");
+				app.setState({});
+				setTimeout(function(){
+					$.back();
+				},300);
+			});
+		});
+		
+	});
+}(mui, document));
+</script>
+</body>
+</html>

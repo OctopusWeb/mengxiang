@@ -1,0 +1,45 @@
+html,body {
+	background-color: #efeff4;
+}
+.pagination {
+    display: inline-block;
+    margin: 0 auto;
+    padding-left: 0;
+    border-radius: 6px;
+}
+.pagination li {
+	display: inline;
+}
+.pagination>li>a, .pagination>li>span {
+    line-height: 1.428571429;
+    position: relative;
+    float: left;
+    margin-left: -1px;
+    padding: 6px 12px;
+    text-decoration: none;
+    color: #007aff;
+    border: 1px solid #ddd;
+    background-color: #fff;
+}
+.fa {
+    display: inline-block;
+    font-family: Muiicons;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    text-decoration: none;
+    -webkit-font-smoothing: antialiased;
+}
+.fa-angle-double-left:before {
+    content: "«";
+}
+.fa-angle-left:before {
+    content: "\e471";
+}
+.fa-angle-right:before {
+    content: "\e470";
+}
+.fa-angle-double-right:before {
+    content: "»";
+}

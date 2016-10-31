@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" href="css/user.css">
+	</head>
+	<style type="text/css">
+		.mui-navigate-right:after, .mui-push-left:after, .mui-push-right:after{font-size: 18px;}
+		.mui-bar{height: 60px;padding-top: 20px;background: #3dc579;box-shadow: none;}
+			.mui-bar a{color: #fff;}
+			.mui-title{color: #fff;font-weight: 600;}
+			
+			#mui_nav{background: none;height: 30px}
+			#mui_nav a{width: 25%;position: relative;background: #fff;border-top: 1px #ccc solid;height: 60px;}
+			#mui_nav img{position: absolute;width: 20px;left: 50%;margin-left: -10px;top: 10px;}
+			#mui_nav span{color: #727272;font-size: 14px;float: left;width: 100%;margin-top: 20px;}
+			#mui-tab-label1{color: #3dc579;}
+			
+			.mui-content{margin-top:10px;}
+			.mui-icon-arrowright{float: right;margin-top: 10px;color: #ccc;}
+	</style>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a id="record" class="mui-pull-left text-header">记录</a>
+			<h1 id="title" class="mui-title">个人中心</h1>
+			<!--<a id="share" class="mui-pull-right text-header">分享</a>-->
+		</header>
+		<nav class="mui-bar mui-bar-tab" id="mui_nav">
+			<a class="home-tab-item mui-active" id="index_main">
+				<img src="images/icon1.png"/>
+				<span class="mui-tab-label" >互助</span>
+			</a>
+			<a class="home-tab-item" id="index_expanded">
+				<img src="images/icon2.png"/> 
+				<span class="mui-tab-label">推广</span>
+			</a>
+			<a class="home-tab-item" id="index_shop">
+				<img src="images/icon3.png"/>
+				<span class="mui-tab-label">商城</span>
+			</a>
+			<a class="home-tab-item" id="index_user">
+				<img src="images/icon41.png"/>
+				<span class="mui-tab-label" style="color: #3dc579;">个人</span>
+			</a>
+		</nav>
+		<div class="mui-content">
+			<div class="expand-user">
+				<div class="user-name">
+					<div class="headImg">
+						<img src="images/head.jpg"/>
+						<div class="name">
+							<span id="username"></span>
+							<button type="button" class="no" id="group"></button>
+						</div>
+					</div>					 
+					<div class="user-info">
+						<p id="jointime"></p>
+						<p id="telephone"></p>
+						<p id="parent"></p>
+					</div>
+				</div>
+			</div>
+			<table class="mui-table-view optionTable" cellpadding="0" cellspacing="0" border="0" width="99.99%">
+				<tr>
+					<td class="mui-table-cell" width="100%" id="changePassword">
+						<span class="iconfont1 icon1"></span>
+						<p>修改密码</p>
+						<span class=" mui-icon-arrowright mui-icon"></span>
+					</td>					
+				</tr>
+				<tr>
+					<td class="mui-table-cell" width="100%" id="setBank">
+						<span class="iconfont1 icon2"></span>
+						<p>收款方式</p>
+						<span class=" mui-icon-arrowright mui-icon"></span>
+					</td>
+				</tr>
+				<tr>
+					<td class="mui-table-cell" width="100%" id="questions">
+						<span class="iconfont1 icon3"></span>
+						<p>常见问题</p>
+						<span class=" mui-icon-arrowright mui-icon"></span>
+					</td>
+				</tr>
+				<tr>
+					<td class="mui-table-cell" width="100%" id="cashDetail">
+						<span class="iconfont1 icon4"></span>
+						<p>奖金明细</p>
+						<span class=" mui-icon-arrowright mui-icon"></span>
+					</td>
+				</tr>
+			</table>
+			<table class="mui-table-view optionTable" cellpadding="0" cellspacing="0" border="0" width="99.99%">
+				<tr>
+					<td class="mui-table-cell" width="50%" id="guestbook">
+						<span class="iconfont1 icon5"></span>
+						<p>系统留言</p>
+						<span class=" mui-icon-arrowright mui-icon"></span>
+					</td>
+				</tr>
+				<tr>
+					<td class="mui-table-cell" width="50%" id="systemNote">
+						<span class="iconfont1 icon6"></span>
+						<p>系统通知</p>
+						<span class=" mui-icon-arrowright mui-icon"></span>
+					</td>
+				</tr>
+				<tr class="exit">
+					<td class="mui-table-cell" id='exit' width="50%" id="systemNote">
+						<span class="iconfont1 icon7"></span>
+						<p>退出</p>
+						
+					</td>
+				</tr>
+			</table>
+		</div>		
+	</body>
+	<script src="js/mui.min.js"></script>
+	<script src="js/app.js"></script>
+	<script src="script/user.js"></script>
+	<script>
+	(function($, doc) {
+		$.init({
+			swipeBack:true //启用右滑关闭功能
+		});
+		var username = doc.getElementById("username");
+		var jointime = doc.getElementById("jointime");
+		var group = doc.getElementById("group");
+		var telephone = doc.getElementById("telephone");
+		var parent = doc.getElementById("parent");
+		
+		// 功能菜单
+		var dealRecord = doc.getElementById("record");
+		
+		var changePassword = doc.getElementById("changePassword");
+		var setBank = doc.getElementById("setBank");
+		var questions = doc.getElementById("questions");
+		var cashDetail = doc.getElementById("cashDetail");
+		var guestbook = doc.getElementById("guestbook");
+		var systemNote = doc.getElementById("systemNote");
+		
+		$.plusReady(function() {
+			var state = app.getState();
+			
+			window.addEventListener("refreshData", function(e) {
+				var newState = app.getState();
+				username.innerHTML = newState.truename;
+				group.innerHTML = '<i class="iconfont icon-xunzhang"></i>'+newState.group;
+			});
+			
+			username.innerHTML = state.truename;
+			telephone.innerHTML = "手机号码："+state.username;
+			jointime.innerHTML = "加入时间："+state.jointime;
+			parent.innerHTML = "推荐号码："+state.parent;
+			group.innerHTML = '<i class="iconfont icon-xunzhang"></i>'+state.group;
+			
+			var dealRecordPage = $.preload({
+				"id"  : "dealRecord",
+				"url" : "deal_record.html"
+			});
+			dealRecord.addEventListener("tap", function(){
+				$.openWindow({
+					id: 'dealRecord',
+					show: {
+						aniShow: 'pop-in'
+					},
+					waiting: {
+						autoShow: false
+					}
+				});
+			}, false);
+			
+			var changePasswordPage = $.preload({
+				"id"  : "changePassword",
+				"url" : "change_password.html"
+			});
+			changePassword.addEventListener("tap", function(){
+				$.openWindow({
+					id: 'changePassword',
+					show: {
+						aniShow: 'pop-in'
+					},
+					waiting: {
+						autoShow: false
+					}
+				});
+			});
+			
+			var setBankPage = $.preload({
+				"id"  : "setBank",
+				"url" : "set_bank.html"
+			});
+			setBank.addEventListener("tap", function(){
+				$.openWindow({
+					id: 'setBank',
+					show: {
+						aniShow: 'pop-in'
+					},
+					waiting: {
+						autoShow: false
+					}
+				});
+			});
+			
+			var questionPage = $.preload({
+				"id"  : "question",
+				"url" : "question.html"
+			});
+			questions.addEventListener("tap", function(){
+				$.openWindow({
+					id: 'question',
+					show: {
+						aniShow: 'pop-in'
+					},
+					waiting: {
+						autoShow: false
+					}
+				});
+			});
+			
+			guestbook.addEventListener("tap", function(){
+				$.openWindow({
+					id: 'feedback',
+					url: 'feedback.html',
+					show: {
+						aniShow: 'pop-in'
+					},
+					waiting: {
+						autoShow: false
+					}
+				});
+			});
+			
+			systemNote.addEventListener("tap", function(){
+				$.openWindow({
+					id: 'announce',
+					url : "announce.html",
+					show: {
+						aniShow: 'pop-in'
+					},
+					waiting: {
+						autoShow: false
+					}
+				});
+			});
+			
+			cashDetail.addEventListener("tap", function(){
+				$.openWindow({
+					id: 'wallet',
+					url: "wallet.html",
+					show: {
+						aniShow: 'pop-in'
+					},
+					createNew: true,
+					waiting: {
+						autoShow: false
+					}
+				});
+			});
+			
+			
+		});
+	}(mui, document));
+	
+	document.getElementById('exit').addEventListener('tap', function() {
+		if (mui.os.ios) {
+			app.setState({});
+			plus.runtime.restart();
+			mui.openWindow({
+				url: 'login.html',
+				id: 'login',
+				show: {
+					aniShow: 'pop-in'
+				},
+				waiting: {
+					autoShow: false
+				}
+			});
+			return;
+		}
+		var btnArray = [{ title: "注销当前账号" }, { title: "直接关闭应用" }];
+		plus.nativeUI.actionSheet({
+			cancel: "取消",
+			buttons: btnArray
+		}, function(event) {
+			var index = event.index;
+			switch (index) {
+				case 1:
+					app.setState({});
+					plus.runtime.restart();
+					mui.openWindow({
+						url: 'index.html',
+						id: 'index',
+						show: {
+							aniShow: 'pop-in'
+						},
+						waiting: {
+							autoShow: false
+						}
+					});
+					break;
+				case 2:
+					plus.runtime.quit();
+					break;
+			}
+		});
+	}, false);
+	    mui.plusReady(function() {
+
+            var supgrade = document.getElementById("supgrade");
+
+              
+        });
+        
+//	var shares = {};
+//	mui.plusReady(function() {
+//		plus.share.getServices(function(s) {
+//			if (s && s.length > 0) {
+//				for (var i = 0; i < s.length; i++) {
+//					var t = s[i];
+//					shares[t.id] = t;
+//				}
+//			}
+//		}, function() {
+//			console.log("获取分享服务列表失败");
+//		});
+//	});
+	 //分享链接点击事件
+//	document.getElementById("share").addEventListener('tap', function() {
+//		var ids = [{
+//				id: "weixin",
+//				ex: "WXSceneSession"
+//			}, {
+//				id: "weixin",
+//				ex: "WXSceneTimeline"
+//			}, {
+//				id: "sinaweibo"
+//			}, {
+//				id: "tencentweibo"
+//			}, {
+//				id: "qq"
+//			}],
+//			bts = [{
+//				title: "发送给微信好友"
+//			}, {
+//				title: "分享到微信朋友圈"
+//			}, {
+//				title: "分享到新浪微博"
+//			}, {
+//				title: "分享到腾讯微博"
+//			}, {
+//				title: "分享到QQ"
+//			}];
+//		plus.nativeUI.actionSheet({
+//			cancel: "取消",
+//			buttons: bts
+//		}, function(e) {
+//			var i = e.index;
+//			if (i > 0) {
+//				var s_id = ids[i - 1].id;
+//				var share = shares[s_id];
+//				if (share.authenticated) {
+//					shareMessage(share, ids[i - 1].ex);
+//				} else {
+//					share.authorize(function() {
+//						shareMessage(share, ids[i - 1].ex);
+//					}, function(e) {
+//						console.log("认证授权失败：" + e.code + " - " + e.message);
+//					});
+//				}
+//			}
+//		});
+//	});
+
+	function shareMessage(share, ex) {
+		var msg = {
+			extra: {
+				scene: ex
+			}
+		};
+		msg.href = "http://www.jkbbt.com/";
+		msg.title = "拉拉互助平台";
+		msg.content = "拉拉互助平台，让我们帮助我们！让我们一起改变世界！";
+		if (~share.id.indexOf('weibo')) {
+			msg.content += "；APP下载：www.jkbbt.com";
+		}
+		msg.thumbs = ["images/logo.png"];
+		share.send(msg, function() {
+			console.log("分享到\"" + share.description + "\"成功！ ");
+		}, function(e) {
+			console.log("分享到\"" + share.description + "\"失败: " + e.code + " - " + e.message);
+		});
+	}
+	</script>
+
+</script>
+</html>

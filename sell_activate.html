@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" href="css/teamDetail.css">
+	</head>
+	<style type="text/css">
+		.mui-bar{height: 60px;padding-top: 20px;background: #3dc579;box-shadow: none;}
+		.mui-bar a{color: #fff;}
+		.mui-title{color: #fff;font-weight: 600;}
+		
+		#mui_nav{background: none;height: 30px}
+		#mui_nav a{width: 25%;position: relative;background: #fff;border-top: 1px #ccc solid;height: 60px;}
+		#mui_nav img{position: absolute;width: 20px;left: 50%;margin-left: -10px;top: 10px;}
+		#mui_nav span{color: #727272;font-size: 14px;float: left;width: 100%;margin-top: 20px;}
+		
+		.mui-content{margin-top: 30px;}
+		.mui-input-group .mui-input-row{height: 50px;}
+		.mui-input-group .mui-input-row input{line-height:30px;font-size: 14px;}
+		#sell{float: left;width: 90%;margin-left: 5%;height: 50px;background: #3dc579;border: none;margin-top: 10px;}
+	</style>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="title" class="mui-title">转让激活币</h1>
+		</header>
+		<nav class="mui-bar mui-bar-tab" id="mui_nav">
+			<a class="home-tab-item mui-active" id="index_main">
+				<img src="images/icon1.png"/>
+				<span class="mui-tab-label">互助</span>
+			</a>
+			<a class="home-tab-item" id="index_expanded">
+				<img src="images/icon21.png"/> 
+				<span class="mui-tab-label"   style="color: #3dc579;">推广</span>
+			</a>
+			<a class="home-tab-item" id="index_shop">
+				<img src="images/icon3.png"/>
+				<span class="mui-tab-label">商城</span>
+			</a>
+			<a class="home-tab-item" id="index_user">
+				<img src="images/icon4.png"/>
+				<span class="mui-tab-label">个人</span>
+			</a>
+		</nav>
+		<div class="mui-content">
+			<form id='login-form' class="mui-input-group" style="margin-top: 5px;">
+				<div class="mui-input-row">
+					<input id='touser' type="tel" class="mui-input-clear mui-input" placeholder="请输入转让账号" value="" />
+				</div>
+				<div class="mui-input-row">
+					<input id='sellcount' type="number" class="mui-input-clear mui-input" placeholder="请输入要转让的数量" value="" />
+				</div>
+			</form>
+		</div>
+		<div class="mui-content-padded">
+			<button id='sell' class="mui-btn mui-btn-block mui-btn-primary">确认转让</button>
+		</div>
+	</body>
+	<script src="js/mui.min.js"></script>
+	<script src="js/app.js"></script>
+	<script src="script/sellActivate.js"></script>
+	<script>
+		(function($, doc) {
+			$.init({
+				swipeBack:true //启用右滑关闭功能
+			});
+			
+			$.plusReady(function() {
+				var state = app.getState();
+				
+				var toUserButton = doc.getElementById("touser");
+				var sellCountButton = doc.getElementById("sellcount");
+				var sellButton = doc.getElementById("sell");
+				
+				sellButton.addEventListener("tap", function(err){
+					sellButton.setAttribute("disabled", true);
+					var data = {};
+					data.fromuser = state.username;
+					data.touser = toUserButton.value;
+					data.sellcount = sellCountButton.value;
+					
+					app.sellActivate(data,function(err) {
+						sellButton.removeAttribute("disabled");
+						if(err) {
+							plus.nativeUI.toast(err);
+							return;
+						}
+						var expandedPage = $.preload({
+							"id": 'expanded',
+							"url": 'expanded.html'
+						});
+						var newState = app.getState();
+						$.fire(expandedPage, 'changeCount', null);
+						setTimeout(function() {
+							$.openWindow({
+								id: 'expanded',
+								show: {
+									aniShow: 'pop-in'
+								},
+								waiting: {
+									autoShow: false
+								}
+							});
+						}, 0);
+					});
+					
+				}, false);
+				
+			});
+			
+		}(mui, document));
+		
+	</script>
+</html>

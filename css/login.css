@@ -1,0 +1,101 @@
+.area {
+	margin: 20px auto 0px auto;
+}
+
+.mui-input-group {
+	margin-top: 10px;
+}
+
+.mui-input-group:first-child {
+	margin-top: 20px;
+}
+
+.mui-input-group label {
+	width: 22%;
+}
+
+.mui-input-row label~input,
+.mui-input-row label~select,
+.mui-input-row label~textarea {
+	width: 78%;
+}
+
+.mui-checkbox input[type=checkbox],
+.mui-radio input[type=radio] {
+	top: 6px;
+}
+
+.mui-content-padded {
+	/* margin-top: 25px; */
+}
+
+.mui-btn {
+	padding: 10px;
+}
+
+.link-area {
+	display: block;
+	/* margin-top: 25px; */
+	text-align: center;
+}
+
+.spliter {
+	color: #bbb;
+	padding: 0px 8px;
+}
+
+.app-icons {
+	 text-align: center;
+	 padding: 60px 0 20px 0;
+}
+
+.expend-item {
+	position: absolute;
+    right: 10px;
+    top: 2px;
+    height: 35px;
+    border-radius: 5px;
+    border:1px solid #ccc;
+}
+
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #626262;  
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #626262;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+    color: #626262;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color: #626262;
+}
+body,html{width: 100%;height: 100%;position: relative;background: #deeeee;} 
+.mui-content{width: 100%;height: 100%;position: relative;background: linear-gradient(0deg,#deeeee,#deeeee)}
+#login-form{background: none;padding-right:20px;}
+#username,#password{color: #626262;font-size: 14px;}
+#login{background: #3dc579;color: #fff;font-weight: 600;border: #087ac0;margin-top: 20px;
+height: 45px;padding-top: 10px;width: 90%;margin-left: 5%;}
+#login-form::after{display: none;}
+#login-form::before{display: none;}
+#login-form .mui-input-row::after{background: #626262;}
+.link-area{text-align: right;padding-right: 20px;}
+#reg{color: #626262;font-size: 18px;text-align: right;}
+.mui-input-group .mui-input-row{margin-top: 15px}
+.mui-input-group .mui-input-row span{font-size: 20px;margin-top: 3px;}
+#zidong{display: block;position: absolute;width: 100%;background: none;}
+.mui-table-view:before{display: none;}
+.mui-table-view:after{display: none;}
+.mui-table-view-cell:before{display: none;}
+.mui-table-view-cell:after{display: none;}
+.mui-input-group:before{display: none;}
+.mui-input-group:after{display: none;}
+.mui-table-view-cell{color: #fff;margin-bottom: 10px;background: none;}
+.mui-table-view { background: none;position: absolute;top: 55px;left: 20px;width: 60%;}
+#autoLogin{left: 90px;}
+.mui-switch-blue.mui-active{background: #3dc579;border: #fff;}

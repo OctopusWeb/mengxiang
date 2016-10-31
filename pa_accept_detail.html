@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" href="css/preview.css">
+		<link rel="stylesheet" href="css/paDetail.css">
+<style>
+
+.alert-box {
+	    display: none;
+    position: relative;
+    margin: 0;
+    color: #FFF;
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    float: right;
+    margin-top: -130px;
+    margin-right: 7px;
+}
+.alert-box p {
+	margin: 0
+}
+.alert-circle {
+	position: relative;
+}
+.alert-sec-circle {
+	stroke-dashoffset: 0;
+	stroke-dasharray: 735;
+	transition: stroke-dashoffset 1s linear
+}
+.alert-sec-text {
+	position: relative;
+    color: #000;
+    width: 100px;
+    height: 60px;
+    margin-top: -60px;
+    font-size: 16px;
+}
+.alert-sec-unit {
+	font-size: 20px
+}
+.alert-body {
+	margin: 35px 0
+}
+
+			.mui-bar{height: 60px;padding-top: 20px;background: #3dc579;box-shadow: none;}
+			.mui-bar a{color: #fff;}
+			.mui-title{color: #fff;font-weight: 600;}
+
+	
+			#mui_nav{background: none;height: 30px;}
+			#mui_nav a{width: 25%;position: relative;background: #fff;border-top: 1px #ccc solid;height: 60px;}
+			#mui_nav img{position: absolute;width: 20px;left: 50%;margin-left: -10px;top: 10px;}
+			#mui_nav span{color: #727272;font-size: 14px;float: left;width: 100%;margin-top: 20px;}
+			
+			.mui-content{margin-top: 20px;}
+</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="title" class="mui-title">得到帮助-匹配详情</h1>
+		</header>
+		<nav class="mui-bar mui-bar-tab" id="mui_nav">
+			<a class="home-tab-item mui-active" id="index_main">
+				<img src="images/icon11.png"/>
+				<span class="mui-tab-label"  style="color: #3dc579;">互助</span>
+			</a>
+			<a class="home-tab-item" id="index_expanded">
+				<img src="images/icon2.png"/>
+				<span class="mui-tab-label">推广</span>
+			</a>
+			<a class="home-tab-item" id="index_shop">
+				<img src="images/icon3.png"/>
+				<span class="mui-tab-label">商城</span>
+			</a>
+			<a class="home-tab-item" id="index_user">
+				<img src="images/icon4.png"/>
+				<span class="mui-tab-label">个人</span>
+			</a>
+		</nav>
+		<div class="mui-content">
+			<div class="deal-title" id="deal-title"></div>
+			<ul class="mui-table-view" id="detail_list"></ul>
+			<div id="clock-div" style="display: none;">
+				<div id="js-alert-box" class="alert-box" style="display: block;">
+					<svg class="alert-circle" width="90" height="90">
+						<circle cx="47" cy="47" r="40" fill="#FFF" stroke="#43AEFA" stroke-width="7"></circle>
+						<circle id="js-sec-circle" class="alert-sec-circle" cx="47" cy="47" r="40" fill="transparent" stroke="#F4F1F1" stroke-width="8" transform="rotate(-90 47 47)" style="stroke-dashoffset: 0;"></circle>
+					</svg>
+					<div id="js-sec-text" class="alert-sec-text"></div>
+				</div>
+			</div>
+		</div>
+		<div class="mui-content-padded">
+			<div id="check-deal-info"></div>
+			<div id="check-deal-btn"></div>
+		</div>
+	</body>
+	<script src="js/mui.min.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/mui.zoom.js"></script>
+	<script src="js/mui.previewimage.js"></script>
+	<script src="script/paAcceptDetail.js"></script>
+	<script>
+function formatSeconds(value) {
+    var theTime = parseInt(value);// 秒
+    var theTime1 = 0;// 分
+    var theTime2 = 0;// 小时
+    if(theTime > 60) {
+        theTime1 = parseInt(theTime/60);
+        theTime = parseInt(theTime%60);
+        if(theTime1 > 60) {
+            theTime2 = parseInt(theTime1/60);
+            theTime1 = parseInt(theTime1%60);
+        }
+    }
+    var result = ""+parseInt(theTime);
+    if(theTime1 > 0) {
+        result = ""+parseInt(theTime1)+":"+result;
+    }
+    if(theTime2 > 0) {
+        result = ""+parseInt(theTime2)+":"+result;
+    }
+    return result;
+}
+function alertSet(nowt,max) {
+	var t = nowt;
+    document.getElementById("js-alert-box").style.display = "block";
+    n = document.getElementById("js-sec-circle");
+    document.getElementById("js-sec-text").innerHTML = formatSeconds(t);
+    setInterval(function() {
+        if (0 == t){
+		}else {
+            t -= 1,
+            document.getElementById("js-sec-text").innerHTML = formatSeconds(t);
+            var e = Math.round(t / max * 251);
+            n.style.strokeDashoffset = e - 251
+        }
+    },
+    970);
+}
+		(function(mui, doc) {
+			mui.init({
+				swipeBack:true //启用右滑关闭功能
+			});
+			mui.plusReady(function() {
+				webPageFunction = function() {
+					plus.webview.currentWebview().close();
+				}
+				plus.screen.lockOrientation("portrait-primary");
+				var self = plus.webview.currentWebview();
+				var paid   = parseInt(self.paid);
+				var patype = parseInt(self.patype);
+				if(paid == 0) {
+					plus.nativeUI.toast("参数错误！ ");
+					mui.back();
+				}
+				
+				var state = app.getState();
+				var data = {};
+				data.id = paid;
+				data.type = patype;
+				data.username = state.username;
+				app.getDetail(data, function(err) {
+					if (err) {
+						plus.nativeUI.toast(err);
+						return;
+					}
+				});
+				
+				mui("#check-deal-btn").on("tap", "#accept-submit", function(){
+					mui.confirm("您是否已经确认对方的打款信息？", "拉拉平台", "", function(e){
+						if(e.index == 1) {
+							doc.getElementById("accept-submit").setAttribute("disabled", true);
+							var data = {};
+							var state = app.getState();
+							data.username = state.username;
+							data.ddid = doc.getElementById("accept-submit").getAttribute("data-id");
+							
+							app.checkScrip(data, function(err) {
+								doc.getElementById("accept-submit").removeAttribute("disabled");
+								if(err) {
+									plus.nativeUI.toast(err);
+									return;
+								}
+								
+								var mainPage = mui.preload({
+									"id": "main",
+									"url": "main.html"
+								});
+								mui.alert("确认成功！", "拉拉平台", "确定", function(){
+									mui.fire(mainPage, "refresh", null);
+									mui.back();
+								});
+							});
+						}
+					});
+				}); 
+				mui("#check-deal-btn").on("tap", "#accept-error", function(){
+					mui.confirm("您确认要标记本次打款是虚假打款吗？", "拉拉平台", "", function(e){
+						if(e.index == 1) {
+							doc.getElementById("accept-error").setAttribute("disabled", true);
+							var data = {};
+							var state = app.getState();
+							data.username = state.username;
+							data.ddid = doc.getElementById("accept-error").getAttribute("data-id");
+							
+							app.setBogus(data, function(err) {
+								doc.getElementById("accept-error").removeAttribute("disabled");
+								if(err) {
+									plus.nativeUI.toast(err);
+									return;
+								}
+								
+								var mainPage = mui.preload({
+									"id": "main",
+									"url": "main.html"
+								});
+								mui.alert("确认成功，感谢您的反馈，我们会尽快处理！", "拉拉平台", "确定", function(){
+									mui.fire(mainPage, "refresh", null);
+									mui.back();
+								});
+							});
+						}
+					}); 
+				});
+			});
+			$.back = function() {
+					plus.webview.currentWebview().close();
+					oldBack();
+			};
+		}(mui, document));
+	</script>
+</html>

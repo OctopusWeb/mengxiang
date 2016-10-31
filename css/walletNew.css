@@ -1,0 +1,22 @@
+.title {
+	font-size: 16px;
+	color: #CE8B0C;
+	margin-top:20px;
+	text-align: center;
+}
+.mui-content{width:100%;}
+.bag{height:auto;width:90%;
+	background: -moz-linear-gradient(45deg, #f55c81, #d96578);
+	background: -o-linear-gradient(45deg, #f55c81, #d96578);
+	background: -webkit-linear-gradient(45deg, #f55c81, #d96578);
+	background: linear-gradient(45deg, #f55c81, #d96578);
+	margin:0 auto;border-radius: 10px;
+	display: table;padding:15px;margin-top:15px;}
+#dynamicWallet{background: linear-gradient(45deg,#66c7b7,#3d83c6)}
+#frozenWallet{background: linear-gradient(45deg,#5fa7fc,#c07efe)}
+
+.bag .set_icon{height:60px;width: 60px;padding-right:25px;
+			display: table-cell;vertical-align: middle;}
+.bag .set_icon .iconfont img{width:50px;height:50px;}
+.set_name{font-size:20px;color:#fff;line-height: 30px;}
+.set_detail p{font-size:18px;color:#fff;}

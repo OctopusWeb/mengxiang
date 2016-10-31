@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" href="css/question.css">
+	</head>
+
+	<body>
+		<div id="refreshContainer" class="mui-content mui-scroll-wrapper" style="margin-top: 0px; padding-top: 0; border-top: 2px #efefef; float: none; clear:both">
+			<div class="mui-scroll">
+				<ul class="mui-table-view mui-table-view-chevron">
+					<li>
+						<div class="lala-list" id="question-list" style="background: #efeff4;">
+						</div>
+					</li>  
+				</ul>
+			</div>
+		</div>
+	</body>
+	<script src="js/mui.min.js"></script>
+	<script src="js/app.js"></script>
+	<script src="script/question.js"></script>
+	<script>
+		(function($, doc) {
+			
+			$.init({
+				pullRefresh : {
+					container:"#refreshContainer",
+					down : {
+						height:50,
+						contentdown : "下拉可以刷新",
+						contentover : "释放立即刷新",
+						contentrefresh : "正在刷新...",
+						callback :function(){
+							get_list();
+						}
+					}
+				}
+			});
+			$.plusReady(function(){
+				plus.nativeUI.showWaiting();
+				get_list = function(){
+					plus.nativeUI.closeWaiting();
+					app.getQuestionList(function(err) {
+						if (err) {
+							plus.nativeUI.toast(err);
+							return;
+						}
+					});
+					$('#refreshContainer').pullRefresh().endPulldownToRefresh();
+				}
+				get_list();
+				
+				$("#question-list").on("tap", ".mui-card .artcle-link", function(){
+					var articleID = this.getAttribute('id');
+					setTimeout(function() {
+						$.openWindow({
+							id: 'questionDetial',
+							url: "question_detail.html",
+							waiting: {
+								autoShow: true
+							},
+							extras: {
+								articleID: articleID
+							},
+						});
+					}, 0);
+				});
+			});
+		}(mui, document));
+	</script>
+</html>

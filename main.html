@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" href="css/main.css">
+	</head>
+	<style type="text/css">
+			.mui-bar{height: 60px;padding-top: 20px;background: #3dc579;box-shadow: none;}
+			.mui-bar a{color: #fff;}
+			.mui-title{color: #fff;font-weight: 600;}
+
+	
+			#mui_nav{background: none;height: 30px;}
+			#mui_nav a{width: 25%;position: relative;background: #fff;border-top: 1px #ccc solid;height: 60px;}
+			#mui_nav img{position: absolute;width: 20px;left: 50%;margin-left: -10px;top: 10px;}
+			#mui_nav span{color: #727272;font-size: 14px;float: left;width: 100%;margin-top: 20px;}
+			#mui-tab-label1{color: #3dc579;}
+			
+			.mui-content{margin-top: 20px;background: #fff;}
+			#title{width: 100%;color: #3dc579;height: 35px;font-size: 12px;line-height: 30px;margin-top: -5px;}
+			#banner{float: left;width: 100%;margin-top: 20px;height: 110px;overflow: hidden;}
+			#banner img{float: left;width: 100%;height: auto;}
+			.mui-content a{width: 33.3%;background: #fff;height: auto;padding: 15px 0;}
+			.mui-content a img{width: 50%;}
+			.title{height: 30px;width: 100%;background: #fff;float: left;margin-top: 5px;}
+			.title #info{width: 14px;float: left;margin: 5px 10px;}
+			.title h1{float: left;font-size: 14px;color: #3dc579;line-height: 20px;}
+	</style>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <h1 class="mui-title">首页</h1>
+		</header>
+		
+		<nav class="mui-bar mui-bar-tab" id="mui_nav">
+			<a class="home-tab-item mui-active" id="index_main">
+				<img src="images/icon11.png"/>
+				<span class="mui-tab-label"  style="color: #3dc579;">互助</span>
+			</a>
+			<a class="home-tab-item" id="index_expanded">
+				<img src="images/icon2.png"/>
+				<span class="mui-tab-label">推广</span>
+			</a>
+			<a class="home-tab-item" id="index_shop">
+				<img src="images/icon3.png"/>
+				<span class="mui-tab-label">商城</span>
+			</a>
+			<a class="home-tab-item" id="index_user">
+				<img src="images/icon4.png"/>
+				<span class="mui-tab-label">个人</span>
+			</a>
+		</nav>
+		<div class="mui-content">
+			<div class="news">
+				<h1 id="title" class="mui-title" style="overflow-x:-webkit-marquee; font-size: 14px;">拉拉V5</h1>
+			</div>
+			<div id="banner">
+				<img src="images/banner.jpg" />
+			</div>
+			
+			<a id="provide" class="provide">
+				<img src="images/nav1.png"/>
+			</a>
+			<a id="wallet" class="wallet" >
+				<img src="images/nav2.png"/>
+			</a>
+			<a id="accept" class="accept">
+				<img src="images/nav3.png"/>
+			</a>
+			<div class="title">
+				<img src="images/indexInfo.jpg" id="info"/>
+				<h1>详情</h1>
+			</div>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script src="js/app.js"></script>
+		<script src="script/main.js"></script>
+		<script type="text/javascript" src="js/update.js"></script>
+		<script src="./script/announce1.js"></script>
+		<script type="text/javascript">
+			(function($, doc) {
+				
+				$.init({
+				    subpages:[{
+						url:"main_data.html",
+						id:"main_data",
+						styles:{
+							top:335,
+							bottom: 60,
+						},
+					}]
+				});
+				
+				var contentWebview = null;
+				$.plusReady(function() {
+					window.addEventListener("refresh", function(event) {
+						if(contentWebview==null){
+							contentWebview = plus.webview.currentWebview().children()[0];
+						}
+						contentWebview.evalJS("mui('#refreshContainer').pullRefresh().pulldownLoading()");
+						
+						var state = app.getState();
+						var data = {};
+						data.readannounceid = state.readannounceid;
+						app.isReadAnnounce(data, function(err) {
+							if (err) {
+								$.openWindow({
+									id: 'announce',
+									url: 'announce.html',
+									show: {
+										aniShow: 'pop-in'
+									},
+									styles: {
+										popGesture: 'hide'
+									},
+									createNew: true,
+									waiting: {
+										autoShow: false
+									}
+								});
+							} 
+							return;
+						});
+						app.mainLoadAnnounce(function(err) {
+							if (err) {
+								doc.getElementById("title").innerHTML = "拉拉";
+							} 
+							return;
+						});
+						
+					});
+					var state = app.getState();
+					var data = {};
+					data.readannounceid = state.readannounceid;
+					app.isReadAnnounce(data, function(err) {
+						if (true) {
+							app.loadAnnounce(function(err) {
+								if(err) {
+									plus.nativeUI.toast(err);
+									return;
+								}
+							});
+						} 
+						return;
+					});
+					app.mainLoadAnnounce(function(err) {
+						if (err) {
+							doc.getElementById("title").innerHTML = "拉拉";
+						} 
+						return;
+					});
+					
+					doc.getElementById("title").addEventListener("tap", function(){
+						$.openWindow({
+							id: 'announce',
+							url : "announce.html",
+							show: {
+								aniShow: 'pop-in'
+							},
+							waiting: {
+								autoShow: false
+							}
+						});
+					});
+					var settings = app.getSettings();
+					plus.screen.lockOrientation("portrait-primary");
+					
+					var provideButton = doc.getElementById('provide');
+					provideButton.addEventListener('tap', function(event) {
+						$.openWindow({
+							id: 'provide',
+							url: 'provide.html',
+							show: {
+								aniShow: 'pop-in'
+							},
+							styles: {
+								popGesture: 'hide'
+							},
+							createNew: true,
+							waiting: {
+								autoShow: false
+							}
+						});
+					})
+					
+					var acceptButton = doc.getElementById('accept');
+					acceptButton.addEventListener('tap', function(event) {
+						$.openWindow({
+							id: 'accept',
+							url: 'accept.html',
+							show: {
+								aniShow: 'pop-in'
+							},
+							styles: {
+								popGesture: 'hide'
+							},
+							waiting: {
+								autoShow: false
+							}
+						});
+					})
+					
+					var walletButton = doc.getElementById("wallet");
+					walletButton.addEventListener("tap", function(){
+						$.openWindow({
+							id: 'wallet',
+							url: "wallet.html",
+							show: {
+								aniShow: 'pop-in'
+							},
+							createNew: true,
+							waiting: {
+								autoShow: false
+							}
+						});
+					});
+					// 返回监听
+					$.oldBack = mui.back;
+					var backButtonPress = 0;
+					$.back = function(event) {
+						backButtonPress++;
+						if (backButtonPress > 1) {
+							plus.runtime.quit();
+						} else {
+							plus.nativeUI.toast('再按一次退出应用');
+						}
+						setTimeout(function() {
+							backButtonPress = 0;
+						}, 1000);
+						return false;
+					};
+				});
+				
+			}(mui, document));	
+			
+		</script>
+
+	</body>
+
+</html>

@@ -1,0 +1,78 @@
+html,body {
+	background-color: #efeff4;
+}
+.user-name {
+	padding:20px;
+	border-bottom: 1px solid darkgray;
+}
+.user-name p {
+	padding: 0;
+	margin: 0;
+	color: #202020;
+}
+.user-name .username {
+	font-size: 20px;
+	line-height: 30px;
+}
+.user-name #qiandao.no {
+	font-size: 12px; 
+	line-height: 14px; 
+	height: 26px; 
+	padding:5px 10px; 
+	background: darkred; 
+	color: #fff;
+}
+.user-name #qiandao.yes {
+	font-size: 12px; 
+	line-height: 14px; 
+	height: 26px; 
+	padding:5px 10px; 
+	background: darkgray; 
+	color: #fff;
+}
+.activate {
+	/*padding: 20px 20px 0 20px;*/
+    height: 60px;
+}
+.activate .activate_count {
+	background: #a6c8e3;
+	color: #fff;
+	height: 40px;
+	padding: 10px 20px
+	border: 1px solid #efefef;
+	border-radius: 5px;
+	text-align: center;
+	line-height: 40px;
+	font-size: 14px;
+}
+.activate .activate_count label {
+	float:left;
+	background: #669bc1;
+	border-radius: 5px 0 0 5px;
+	padding:0 10px 0 5px
+}
+.activate #sell_activate {
+	text-align: center;
+	background: #0062CC;
+	color: #fff;
+	/*height: 40px;*/
+	/*padding: 10px 20px;*/
+	border: 1px solid #efefef;
+	border-radius: 5px;
+	font-size: 14px;
+}
+.mui-slider-group {
+	font-size: 14px;
+}
+.mui-slider-group .mui-table-view th {
+	padding:5px;
+	border-bottom: 1px solid #efefef;
+}
+.mui-slider-group .mui-table-view td {
+	font-size: 12px;
+	line-height: 3em;
+	border-bottom: 1px solid #efefef;
+}
+.mui-slider-group .mui-table-view tbody tr:active {
+	background: #efefef;
+}

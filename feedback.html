@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" href="css/feedback.css">
+	</head>
+	<style type="text/css">
+			.mui-bar{height: 60px;padding-top: 20px;background: #3dc579;box-shadow: none;}
+			.mui-bar a{color: #fff;}
+			.mui-title{color: #fff;font-weight: 600;}
+
+	
+			#mui_nav{background: none;height: 30px}
+			#mui_nav a{width: 25%;position: relative;background: #fff;border-top: 1px #ccc solid;height: 60px;}
+			#mui_nav img{position: absolute;width: 20px;left: 50%;margin-left: -10px;top: 10px;}
+			#mui_nav span{color: #727272;font-size: 14px;float: left;width: 100%;margin-top: 20px;}
+			#mui-tab-label1{color: #3dc579;}
+			
+			.mui-content{margin-top: 20px;}
+			#submit{float: left;width: 96%;margin-left: 2%;height: 50px;background: #3dc579;border: none;margin-top: 0px;}
+			#fb_content{height: 200px;}
+	</style>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="title" class="mui-title">系统留言</h1>
+		</header>
+		<nav class="mui-bar mui-bar-tab" id="mui_nav">
+			<a class="home-tab-item mui-active" id="index_main">
+				<img src="images/icon1.png"/>
+				<span class="mui-tab-label">互助</span>
+			</a>
+			<a class="home-tab-item" id="index_expanded">
+				<img src="images/icon2.png"/>
+				<span class="mui-tab-label">推广</span>
+			</a>
+			<a class="home-tab-item" id="index_shop">
+				<img src="images/icon3.png"/>
+				<span class="mui-tab-label">商城</span>
+			</a>
+			<a class="home-tab-item" id="index_user">
+				<img src="images/icon41.png"/>
+				<span class="mui-tab-label" style="color: #3dc579;">个人</span>
+			</a>
+		</nav>
+		<div class="mui-content">
+			<div class="mui-content-padded">
+				<p>反馈标题</p>
+				<div class="row mui-input-row">
+					<input type="text" id="fb_title" placeholder="请填写反馈标题" class="mui-input mui-input-clear" />
+				</div>
+				<p>问题和意见</p>
+				<div class="row mui-input-row">
+					<textarea id='fb_content' class="mui-input-clear" rows="10" placeholder="请详细描述你的问题和意见..."></textarea>
+				</div>
+			</div>
+			<div class="mui-content-padded">
+				<button id='submit' type="button" class="mui-btn mui-btn-block mui-btn-green">提交</button>
+			</div>
+		</div>
+	</body>
+	<script src="js/mui.min.js"></script>
+	<script src="js/app.js"></script>
+	<script src="script/feedback.js"></script>
+	<script type="text/javascript">
+		(function(mui, doc) {
+			mui.init({
+				swipeBack:true //启用右滑关闭功能
+			});
+			
+			mui.plusReady(function() {
+				webPageFunction = function() {
+					plus.webview.currentWebview().close();
+				}
+				var state = app.getState();
+				
+				var submitButton = doc.getElementById("submit");
+				var title = doc.getElementById("fb_title");
+				var content = doc.getElementById("fb_content");
+				
+				submitButton.addEventListener("tap", function(){
+					submitButton.setAttribute("disabled", true);
+					
+					var data = {};
+					data.username = state.username;
+					data.title = title.value;
+					data.content = content.value;
+					
+					app.sendFeedback(data, function(err) {
+						submitButton.removeAttribute("disabled");
+						if(err) {
+							plus.nativeUI.toast(err);
+							return;
+						}
+						plus.nativeUI.toast("发送成功！我们客服会尽快和您联系！");
+						
+						setTimeout(function(){
+							mui.back();
+						}, 800)
+					});
+					
+				},false);
+				
+			});
+			//处理view的后退与webview后退
+			$.back = function() {
+					plus.webview.currentWebview().close();
+					oldBack();
+			};
+		}(mui, document));
+		
+	</script>
+</html>

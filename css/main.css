@@ -1,0 +1,213 @@
+html,body {
+	background-color: #efeff4;
+	list-style: none
+}
+.provide {
+	width: 33.33%;
+	height: 120px;
+	float: left;
+	text-align: center;
+}
+.wallet {
+	width: 33.33%;
+	height: 120px;
+	float: left;
+	text-align: center;
+}
+.accept {
+	width: 33.33%;
+	height: 120px;
+	float: right;
+	text-align: center;
+}
+.iconfont-home {
+	height: 110px;
+	float:left;
+	clear: both;
+	width: 100%;
+}
+.verylarge {
+	font-size: 100px;
+	padding: 50px 0 0 0px;
+}
+
+.home-tab {
+	bottom: 0;
+    display: table;
+    width: 100%;
+    height: 50px;
+    padding: 0;
+    table-layout: fixed;
+    border-top: 0;
+    border-bottom: 0;
+    -webkit-touch-callout: none;
+}
+.lala-list {
+	clear: both;
+	float:left;
+	width: 100%;
+}
+.list-left {
+	list-style: none;
+	float: left;
+	width: 50%;
+	padding:0;
+	margin:0;
+}
+/*.list-right {
+	list-style: none;
+	float:right;
+	width: 50%;
+	padding:0;
+	margin:0
+}*/
+.deal-block {
+	width: 100%;
+	height: 80px;
+	background: #fff;
+	border-bottom: 1px #ccc solid;
+}
+
+.list-line{padding: 5px 5px 1px 10px;background: #B1AFAF;margin-bottom: 5px;}
+
+
+.deal-block .deal_head {
+	margin-left:10px;
+	padding-top: 10px;
+	font-size: 16px;
+	float:left;
+}
+.deal-block .deal_number {
+	margin-left:10px;
+	font-size: 14px;
+	float:left;
+	clear: both;
+}
+.deal-block .deal_icon {
+	float: right;
+	width: 60px;
+	height: 40px;
+	text-align: right;
+	margin:10px 10px 0 0;
+}
+.deal-block .deal_icon span {
+	font-size: 26px;
+	float: right;
+	padding: 10px 5px 5px 7px;
+}
+.deal-block .deal_icon span.static_deal {
+}
+.deal-block .deal_icon span.dynamic_deal {
+}
+.deal-block .deal_icon span.accept_deal {
+}
+/*
+.deal-block .deal_divider {
+	border-bottom: 1px solid #ccc;
+	float: left;
+	width: 100%;
+	background: #fff;
+}*/
+.deal-block .deal_line {
+	padding-top: 10px;
+	float: left;
+	width: 45%;
+}
+.deal-block .deal_line p {
+	color: #727272;
+	line-height: 15px;
+	margin-bottom: 3px;
+	width: 100%;
+	float: left;
+}
+.deal-block .deal_line p .state {
+	position: absolute;
+	right: 10px;
+	background: #ff526e;
+	color: #fff;
+	font-size: 12px;
+	padding: 4px 10px;
+	border-radius: 3px;
+}
+
+.pa-list {
+	list-style: none;
+	padding: 10px;
+	float:left;
+	clear: both;
+	width:100%;
+	margin: 0;
+}
+.pa-list li {
+	height: 70px;
+	float: left;
+	width: 100%;
+	border-radius: 10px;
+	margin-bottom: 10px;
+}
+.pa-list li span {
+	font-size: 35px;
+	border-radius: 50%;
+	padding: 5px;
+	margin: 10px 10px;
+	float: left;
+	height: 50px;
+	width: 50px;
+	text-align: center;
+	padding: 14px 0;
+}
+.pa-list li .content {
+	float: left;
+	font-size: 14px;
+	padding-top: 5px;
+}
+.pa-list li .content p {
+	margin: 0;
+	padding: 0;
+}
+
+.pa-list .success {
+	background: #cde5f2; 
+} 
+.pa-list .success span {
+	color: #fff;
+	border: 1px solid #fff;
+}
+.pa-list .success .content p {
+	color:#fff;
+}
+.pa-list .success .content p{color: #727272;font-size: 12px;}
+
+.pa-list .warning {
+	background: #ffc6cf;
+}
+.pa-list .warning span {
+	color: #fff;
+	border: 1px solid #fff;
+}
+.pa-list .warning .content p {
+	color:#fff;
+}
+
+.pa-list .warning .content p{color: #727272;font-size: 12px;}
+
+.pa-list .faild {
+	background: #fff;
+}
+.pa-list .faild span {
+	color: darkgray;
+	border: 1px solid darkgray;
+}
+.pa-list .faild .content p {
+	color:#525252;
+}
+
+.mui-bar-nav ~ .mui-content .mui-pull-top-pocket{
+  top: 335px !important;
+  position: absolute;
+	z-index: 9999;
+}
+
+.deal_x_left { float:left}
+.deal_x_right { float:right}
+.state{}
